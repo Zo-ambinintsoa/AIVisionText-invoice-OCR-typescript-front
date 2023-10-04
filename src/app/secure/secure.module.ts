@@ -6,6 +6,7 @@ import {DocumentUploadComponent} from "../components/document-upload/document-up
 import {CategoryManagementComponent} from "../components/category-management/category-management.component";
 import {HeaderComponent} from "../components/layout/header/header.component";
 import {SidebarComponent} from "../components/layout/sidebar/sidebar.component";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -19,7 +20,8 @@ import {SidebarComponent} from "../components/layout/sidebar/sidebar.component";
     SidebarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class SecureModule { }
