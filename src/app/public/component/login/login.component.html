@@ -1,25 +1,25 @@
 <div class="container-form">
-  <div class="title">Login</div>
+  <div class="title" i18n="@@loginTitle">Login</div>
   <form action="#" method="post">
     <div class="user-detail">
 
       <div class="input-box">
-        <span class="details">Email</span>
+        <span class="details" i18n="@@emailLabel">Email</span>
         <input type="text" placeholder="Enter your email" name="email">
       </div>
       <div class="input-box">
-        <span class="details">Password</span>
+        <span class="details" i18n="@@passwordLabel">Password</span>
         <input type="text" placeholder="Enter your password" name="password">
       </div>
     </div>
     <!-- "Have an account? Login here" link -->
     <p class="login-link">
-     Don't have an account? <a href="/register">Register here</a>
+      <span i18n="@@dontHaveAccount">Don't have an account?</span> <a href="/register" i18n="@@registerLink">Register here</a>
     </p>
 
     <!-- Register button with Google Material Icons Sharp icon -->
     <button class="register-button">
-      <i>login</i> Login
+      <i>login</i> <div i18n="@@loginButton">Login</div>
     </button>
 
   </form>

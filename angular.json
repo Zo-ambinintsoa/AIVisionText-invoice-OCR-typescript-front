@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "prm-front": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "fr-FR" : "src/local/message.fr.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,6 +26,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": ["fr-FR"],
             "outputPath": "dist/prm-front",
             "index": "src/index.html",
             "main": "src/main.ts",

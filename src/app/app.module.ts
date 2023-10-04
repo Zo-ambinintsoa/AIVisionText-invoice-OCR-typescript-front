@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {SecureModule} from "./secure/secure.module";
 import {PublicModule} from "./public/public.module";
+import {CKEditorModule} from "ckeditor4-angular";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {PublicModule} from "./public/public.module";
     BrowserModule,
     AppRoutingModule,
     SecureModule,
-    PublicModule
+    PublicModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

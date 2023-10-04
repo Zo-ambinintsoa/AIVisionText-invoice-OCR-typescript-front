@@ -1,77 +1,54 @@
 <aside>
   <div class="toggle">
     <div class="logo">
-      <img src="logo.png">
-      <h2>Asmr<span class="danger">Prog</span></h2>
+      <h2>CIL - <span class="primary">Nomade</span></h2>
     </div>
     <div class="close" id="close-btn">
-                    <span class="material-icons-sharp">
-                        close
-                    </span>
+      <span class="material-icons-sharp">close</span>
     </div>
   </div>
 
   <div class="sidebar">
-    <a href="#">
-                    <span class="material-icons-sharp">
-                        dashboard
-                    </span>
-      <h3>Dashboard</h3>
+    <a href="/dashboard" [class.active]="activePage === 'dashboard'">
+      <span class="material-icons-sharp">dashboard</span>
+      <h3 i18n="@@dashboard">Dashboard</h3>
     </a>
-    <a href="#">
-                    <span class="material-icons-sharp">
-                        person_outline
-                    </span>
-      <h3>Users</h3>
+    <a href="/user/list" [class.active]="activePage === 'userList'">
+      <span class="material-icons-sharp">person_outline</span>
+      <h3 i18n="@@userList">User List</h3>
     </a>
-    <a href="#">
-                    <span class="material-icons-sharp">
-                        receipt_long
-                    </span>
-      <h3>History</h3>
+    <a href="/history" [class.active]="activePage === 'history'" >
+      <span class="material-icons-sharp">receipt_long</span>
+      <h3 i18n="@@history">History</h3>
     </a>
-    <a href="#" class="active">
-                    <span class="material-icons-sharp">
-                        insights
-                    </span>
-      <h3>Analytics</h3>
+    <a href="/analytics" [class.active]="activePage === 'analytics'">
+      <span class="material-icons-sharp">insights</span>
+      <h3 i18n="@@analytics">Analytics</h3>
     </a>
-    <a href="#">
-                    <span class="material-icons-sharp">
-                        mail_outline
-                    </span>
-      <h3>Tickets</h3>
+    <a href="/logement/list" [class.active]="activePage === 'logement'">
+      <span class="material-icons-sharp">mail_outline</span>
+      <h3 i18n="@@logement">Logement</h3>
       <span class="message-count">27</span>
     </a>
-    <a href="#">
-                    <span class="material-icons-sharp">
-                        inventory
-                    </span>
-      <h3>Sale List</h3>
+    <a href="/document/list" [class.active]="activePage === 'document'">
+      <span class="material-icons-sharp">inventory</span>
+      <h3 i18n="@@document">Document</h3>
     </a>
-    <a href="#">
-                    <span class="material-icons-sharp">
-                        report_gmailerrorred
-                    </span>
-      <h3>Reports</h3>
+    <a href="/publish" [class.active]="activePage === 'publish'">
+      <span class="material-icons-sharp">report_gmailerrorred</span>
+      <h3 i18n="@@publish">Publish</h3>
     </a>
-    <a href="#">
-                    <span class="material-icons-sharp">
-                        settings
-                    </span>
-      <h3>Settings</h3>
+    <a href="/settings" [class.active]="activePage === 'settings'">
+      <span class="material-icons-sharp">settings</span>
+      <h3 i18n="@@settings">Settings</h3>
     </a>
-    <a href="#">
-                    <span class="material-icons-sharp">
-                        add
-                    </span>
-      <h3>New Login</h3>
+    <a href="/new-login" [class.active]="activePage === 'newLogin'">
+      <span class="material-icons-sharp">add</span>
+      <h3 i18n="@@newLogin">New Login</h3>
     </a>
-    <a href="#">
-                    <span class="material-icons-sharp">
-                        logout
-                    </span>
-      <h3>Logout</h3>
+    <a href="/logout">
+      <span class="material-icons-sharp">logout</span>
+      <h3 i18n="@@logout">Logout</h3>
     </a>
   </div>
 </aside>

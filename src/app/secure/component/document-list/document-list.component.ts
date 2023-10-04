@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-document-list',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./document-list.component.css']
 })
 export class DocumentListComponent {
+  title = "Document Lists"
 
+  constructor(private titleService: Title) {
+    this.titleService.setTitle(`PRM - ${(this.title)}`)
+  }
 }
