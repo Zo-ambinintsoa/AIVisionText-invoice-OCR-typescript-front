@@ -7,8 +7,8 @@ import {RegisterComponent} from "./public/component/register/register.component"
 import {DocumentListComponent} from "./secure/component/document-list/document-list.component";
 import {DocumentUploadComponent} from "./secure/component/document-upload/document-upload.component";
 import {HistoryComponent} from "./secure/component/history/history.component";
-import {UserListComponent} from "./secure/component/user-list/user-list.component";
-import {LogementListComponent} from "./secure/component/logement-list/logement-list.component";
+import {UserListComponent} from "./secure/component/user/user-list.component";
+import {LogementListComponent} from "./secure/component/logement/logement-list.component";
 import {PublishComponent} from "./secure/component/publish/publish.component";
 import {SettingsComponent} from "./secure/component/settings/settings.component";
 import {CategoryManagementComponent} from "./secure/component/category-management/category-management.component";

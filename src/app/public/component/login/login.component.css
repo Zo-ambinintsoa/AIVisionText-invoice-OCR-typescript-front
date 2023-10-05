@@ -1,0 +1,8 @@
+@media screen and (max-width: 768px) {
+  .container-form {
+    padding: var(--card-padding);
+    margin-top: 4rem;
+    margin-right: 2rem!important;
+    margin-left: 2rem!important;
+  }
+}

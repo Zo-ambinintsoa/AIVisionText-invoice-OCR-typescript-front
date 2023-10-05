@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap'); /* Color variables */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Color variables */
 :root {
   --color-primary: #6C9BCF;
   --color-danger: #FF0060;
@@ -22,22 +24,36 @@
   --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
-/* Form container styles */
+/* Common styles for container-form and body */
+.container-form, .body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--color-dark);
+}
+
+/* Container-form styles */
 .container-form {
   width: 100%;
-  max-width: 600px; /* Adjust the width as needed */
+  max-width: 600px;
   margin: 4rem auto 0;
   padding: var(--card-padding);
   border-radius: var(--card-border-radius);
   box-shadow: var(--box-shadow);
-  background-color: var(--color-white);
+  background-color: rgba(255, 255, 255, 0.9);
   text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
   user-select: none;
   overflow-x: hidden;
-  color: var(--color-dark);
-  background-color: var(--color-background);
+}
+
+/* Body styles */
+.body {
+  background-image: url('../../assets/login.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Title styles */
@@ -59,17 +75,19 @@
 }
 
 .input-box input[type="text"],
-.input-box input[type="password"] {
+.input-box input[type="email"],
+.input-box input[type="password"],
+.input-box input[type="number"] {
   width: 100%;
   padding: 1rem;
   border: 1px solid var(--color-dark);
-  border-radius: var(--border-radius-1); /* Adjust as needed */
+  border-radius: var(--border-radius-1);
 }
 
 /* Button styles */
 .btn {
   padding: 0.6rem 1rem;
-  border-radius: var(--border-radius-1); /* Adjust as needed */
+  border-radius: var(--border-radius-1);
 }
 
 .btn-primary {
@@ -98,7 +116,7 @@
   display: table;
 }
 
-/* Style the "Have an account?" link */
+/* Style the "Have an account? Login here" link */
 .login-link {
   margin-top: 1rem;
   text-align: center;
@@ -106,7 +124,7 @@
 }
 
 .login-link a {
-  color: var(--color-primary); /* Adjust link color */
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: bold;
 }
@@ -117,11 +135,11 @@
 
 /* Style the Register button */
 .register-button {
-  width: 100%; /* Make the button full-width */
+  width: 100%;
   margin-top: 1rem;
   padding: 0.5rem 1rem;
   border: none;
-  background-color: var(--color-primary); /* Adjust button background color */
+  background-color: var(--color-primary);
   color: white;
   border-radius: var(--border-radius-1);
   font-weight: bold;
@@ -132,18 +150,75 @@
   cursor: pointer;
 }
 
-/* Add Google Material Icons sharp icon */
-.register-button i {
-  font-family: 'Material Icons Sharp', serif; /* Google Material Icons Sharp font */
-  font-size: 1.2rem;
-  margin-right: 0.5rem;
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input-box {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.autocomplete-list {
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.autocomplete-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.autocomplete-item:hover {
+  background-color: #f2f2f2;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.register-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.register-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .container-form {
     padding: var(--card-padding);
-    margin-top: 8rem;
+    margin-top: 4rem;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .input-box {
@@ -151,8 +226,10 @@
   }
 
   .input-box input[type="text"],
+  .input-box input[type="email"],
+  .input-box input[type="number"],
   .input-box input[type="password"] {
-    border-radius: var(--border-radius-1); /* Adjust as needed */
+    border-radius: var(--border-radius-1);
   }
 
   /* Make "Email" and "Username" fields col-12 on mobile */
@@ -160,4 +237,3 @@
     width: 100%;
   }
 }
-

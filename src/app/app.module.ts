@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {SecureModule} from "./secure/secure.module";
 import {PublicModule} from "./public/public.module";
-import {CKEditorModule} from "ckeditor4-angular";
 import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { NgChartsModule } from 'ng2-charts';
     AppRoutingModule,
     SecureModule,
     PublicModule,
-    CKEditorModule,
     NgChartsModule,
   ],
   providers: [],

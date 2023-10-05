@@ -4,7 +4,7 @@ import {Title} from "@angular/platform-browser";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['../../public.component.css']
+  styleUrls: ['../../public.component.css', './register.component.css']
 })
 export class RegisterComponent {
   title = "Register"

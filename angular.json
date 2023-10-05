@@ -26,7 +26,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "localize": ["fr-FR"],
+            "localize": ["en-US"],
             "outputPath": "dist/prm-front",
             "index": "src/index.html",
             "main": "src/main.ts",

@@ -1,0 +1,70 @@
+<div class="container-form">
+  <div class="title">Apartment Details</div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="apartmentForm">
+    <div class="user-detail">
+      <!-- Unit Number -->
+      <div class="input-box">
+        <span class="details">Unit Number</span>
+        <input type="text" placeholder="Enter unit number" formControlName="unitNumber" />
+        <div class="error-message" *ngIf="apartmentForm.get('unitNumber')?.invalid && apartmentForm.get('unitNumber')?.touched">
+          Unit Number is required.
+        </div>
+      </div>
+
+      <!-- Number of Bedrooms -->
+      <div class="input-box">
+        <span class="details">Number of Bedrooms</span>
+        <input type="number" placeholder="Enter number of bedrooms" formControlName="numberOfBedrooms" />
+        <div class="error-message" *ngIf="apartmentForm.get('numberOfBedrooms')?.invalid && apartmentForm.get('numberOfBedrooms')?.touched">
+          Number of Bedrooms is required.
+        </div>
+      </div>
+
+      <!-- Number of Bathrooms -->
+      <div class="input-box">
+        <span class="details">Number of Bathrooms</span>
+        <input type="number" placeholder="Enter number of bathrooms" formControlName="numberOfBathrooms" />
+        <div class="error-message" *ngIf="apartmentForm.get('numberOfBathrooms')?.invalid && apartmentForm.get('numberOfBathrooms')?.touched">
+          Number of Bathrooms is required.
+        </div>
+      </div>
+
+      <!-- Square Footage -->
+      <div class="input-box">
+        <span class="details">Square Footage</span>
+        <input type="number" placeholder="Enter square footage" formControlName="squareFootage" />
+        <div class="error-message" *ngIf="apartmentForm.get('squareFootage')?.invalid && apartmentForm.get('squareFootage')?.touched">
+          Square Footage is required.
+        </div>
+      </div>
+
+      <!-- Property Input with Autocomplete -->
+      <div class="input-box">
+        <span class="details">Property</span>
+        <input
+          type="text"
+          placeholder="Search for a property"
+          formControlName="property"
+          (input)="onPropertyInput()"
+        />
+        <div class="autocomplete-list" *ngIf="showAutocomplete">
+          <div
+            class="autocomplete-item"
+            *ngFor="let property of filteredProperties"
+            (click)="selectProperty(property)"
+          >
+            {{ property.name }}
+          </div>
+        </div>
+        <div class="error-message" *ngIf="apartmentForm.get('property')?.invalid && apartmentForm.get('property')?.touched">
+          Property is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="register-button" [disabled]="apartmentForm.invalid">
+      <i>login</i> <div>Submit</div>
+    </button>
+  </form>
+</div>

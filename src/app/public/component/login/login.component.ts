@@ -4,7 +4,7 @@ import {Title} from "@angular/platform-browser";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['../../public.component.css']
+  styleUrls: ['../../public.component.css', 'login.component.css']
 })
 export class LoginComponent {
   title = "Login"

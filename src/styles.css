@@ -481,25 +481,25 @@ main .table-list a{
   margin-bottom: 0.2rem;
 }
 
-.right-section .reminders{
+.reminders{
   margin-top: 2rem;
 }
 
-.right-section .reminders .header{
+.reminders .header{
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.8rem;
 }
 
-.right-section .reminders .header span{
+.reminders .header span{
   padding: 10px;
   box-shadow: var(--box-shadow);
   background-color: var(--color-white);
   border-radius: 50%;
 }
 
-.right-section .reminders .notification{
+.reminders .notification{
   background-color: var(--color-white);
   display: flex;
   align-items: center;
@@ -512,11 +512,11 @@ main .table-list a{
   transition: all 0.3s ease;
 }
 
-.right-section .reminders .notification:hover{
+.reminders .notification:hover{
   box-shadow: none;
 }
 
-.right-section .reminders .notification .content{
+.reminders .notification .content{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -524,7 +524,7 @@ main .table-list a{
   width: 100%;
 }
 
-.right-section .reminders .notification .icon{
+.reminders .notification .icon{
   padding: 0.6rem;
   color: var(--color-white);
   background-color: var(--color-success);
@@ -532,11 +532,11 @@ main .table-list a{
   display: flex;
 }
 
-.right-section .reminders .notification.deactive .icon{
+.reminders .notification.deactive .icon{
   background-color: var(--color-danger);
 }
 
-.right-section .reminders .add-reminder{
+.reminders .add-reminder{
   background-color: var(--color-white);
   border: 2px dashed var(--color-primary);
   color: var(--color-primary);
@@ -546,12 +546,12 @@ main .table-list a{
   cursor: pointer;
 }
 
-.right-section .reminders .add-reminder:hover{
+.reminders .add-reminder:hover{
   background-color: var(--color-primary);
   color: white;
 }
 
-.right-section .reminders .add-reminder div{
+.reminders .add-reminder div{
   display: flex;
   align-items: center;
   gap: 0.6rem;
