@@ -1,0 +1,39 @@
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <main>
+    <h1 i18n>Lists of Apartments</h1>
+    <br>
+    <hr>
+    <br>
+    <div class="table-list">
+      <table>
+        <thead>
+        <tr>
+          <th i18n="@@apartmentId">Apartment ID</th>
+          <th i18n="@@unitNumber">Unit Number</th>
+          <th i18n="@@numberOfBedrooms">Bedrooms</th>
+          <th i18n="@@numberOfBathrooms">Bathrooms</th>
+          <th i18n="@@squareFootage">Square Footage</th>
+          <th i18n="@@property">Property</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="apartmentList.length === 0">
+          <td colspan="6">
+            <h3 i18n="@@noApartmentsFound">No apartments found</h3>
+          </td>
+        </tr>
+        <tr *ngFor="let apartment of apartmentList">
+          <td>{{ apartment.id }}</td>
+          <td>{{ apartment.unitNumber }}</td>
+          <td>{{ apartment.numberOfBedrooms }}</td>
+          <td>{{ apartment.numberOfBathrooms }}</td>
+          <td>{{ apartment.squareFootage }}</td>
+          <td>{{ apartment.property.propertyName }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <app-header></app-header>
+</div>
