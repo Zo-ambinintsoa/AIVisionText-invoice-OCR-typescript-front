@@ -2,6 +2,42 @@
   <app-sidebar></app-sidebar>
   <main>
     <h1 i18n>Lists of Properties</h1>
+    <br>
+    <hr>
+    <br>
+    <div class="table-list">
+      <table>
+        <thead>
+        <tr>
+          <th i18n="@@logementId">Property ID</th>
+          <th i18n="@@logementName">Property Name</th>
+          <th i18n="@@logementType">Property Type</th>
+          <th i18n="@@logementAddress">Address</th>
+          <th i18n="@@logementUnits">Number of Units</th>
+          <th i18n="@@logementOwner">Owner/Manager</th>
+          <th i18n="@@logementAmenities">Amenities</th>
+          <th i18n="@@logementMaintenanceContact">Maintenance Contact</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="logementList.length === 0">
+          <td colspan="8">
+            <h3 i18n="@@noLogementsFound">No properties found</h3>
+          </td>
+        </tr>
+        <tr *ngFor="let logement of logementList">
+          <td>{{ logement.id }}</td>
+          <td>{{ logement.name }}</td>
+          <td>{{ logement.type }}</td>
+          <td>{{ logement.address }}</td>
+          <td>{{ logement.numberOfUnits }}</td>
+          <td>{{ logement.owner }}</td>
+          <td>{{ logement.amenities }}</td>
+          <td>{{ logement.maintenanceContact }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </main>
   <app-header></app-header>
 </div>

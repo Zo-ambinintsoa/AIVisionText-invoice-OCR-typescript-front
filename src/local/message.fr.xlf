@@ -37,39 +37,46 @@
           <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="apartment" datatype="html">
+        <source>Apartment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/layout/sidebar/sidebar.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="document" datatype="html">
         <source>Document</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/layout/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="publish" datatype="html">
         <source>Publish</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/layout/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="settings" datatype="html">
         <source>Settings</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/layout/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="newLogin" datatype="html">
         <source>New Login</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/layout/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="logout" datatype="html">
         <source>Logout</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/layout/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="loginTitle" datatype="html">
@@ -178,6 +185,13 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6724013582133762990" datatype="html">
+        <source>Lists of Apartment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/apartment/apartment.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="categoryListHeader" datatype="html">
         <source>List of Categories</source>
         <context-group purpose="location">
@@ -192,67 +206,64 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="recentDocuments" datatype="html">
-        <source>Recent Documents</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/secure/component/document-list/document-list.component.html</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="userId" datatype="html">
         <source>User ID</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/secure/component/document-list/document-list.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/user-list/user-list.component.html</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fileName" datatype="html">
         <source>File Name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/secure/component/document-list/document-list.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fileType" datatype="html">
         <source>File Type</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/secure/component/document-list/document-list.component.html</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="fileContent" datatype="html">
-        <source>File Content</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/secure/component/document-list/document-list.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="uploadDate" datatype="html">
         <source>Upload Date</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/secure/component/document-list/document-list.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="documentUrl" datatype="html">
         <source>Document URL</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/secure/component/document-list/document-list.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="category" datatype="html">
         <source>Category</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/secure/component/document-list/document-list.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="noDocumentsFound" datatype="html">
+        <source>No documents found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/document-list/document-list.component.html</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showAll" datatype="html">
         <source>Show All</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/secure/component/document-list/document-list.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8687953788139020258" datatype="html">
@@ -262,11 +273,74 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1220495517900835956" datatype="html">
-        <source>activities history</source>
+      <trans-unit id="5160185603340779594" datatype="html">
+        <source>Activities History</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/secure/component/history/history.component.html</context>
           <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="activityId" datatype="html">
+        <source>Activity ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/history/history.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tableName" datatype="html">
+        <source>Table Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/history/history.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="recordId" datatype="html">
+        <source>Record ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/history/history.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="action" datatype="html">
+        <source>Action</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/history/history.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="oldValue" datatype="html">
+        <source>Old Value</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/history/history.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="newValue" datatype="html">
+        <source>New Value</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/history/history.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="timestamp" datatype="html">
+        <source>Timestamp</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/history/history.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="user" datatype="html">
+        <source>User</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/history/history.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="noActivityFound" datatype="html">
+        <source>No activity found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/history/history.component.html</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4615318692957916399" datatype="html">
@@ -276,11 +350,39 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7430416142942514215" datatype="html">
-        <source>Publish</source>
+      <trans-unit id="5157216038983581767" datatype="html">
+        <source>/ Publish</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/secure/component/publish/publish.component.html</context>
           <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="975449276385153932" datatype="html">
+        <source>New Document</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/publish/publish.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4814584335572587443" datatype="html">
+        <source>New Logement</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/publish/publish.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6544884537029236349" datatype="html">
+        <source>New Apartment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/publish/publish.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="966676689249033743" datatype="html">
+        <source>New User</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/publish/publish.component.html</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6785659997897155974" datatype="html">
@@ -290,11 +392,39 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="580186242073136156" datatype="html">
-        <source>List of User</source>
+      <trans-unit id="2532338575408008468" datatype="html">
+        <source>List of Users</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/secure/component/user-list/user-list.component.html</context>
           <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="username" datatype="html">
+        <source>Username</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/user-list/user-list.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="email" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/user-list/user-list.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="role" datatype="html">
+        <source>Role</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/user-list/user-list.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="noUsersFound" datatype="html">
+        <source>No user found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/secure/component/user-list/user-list.component.html</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
     </body>

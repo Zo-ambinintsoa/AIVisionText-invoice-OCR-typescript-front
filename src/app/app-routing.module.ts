@@ -14,6 +14,7 @@ import {SettingsComponent} from "./secure/component/settings/settings.component"
 import {CategoryManagementComponent} from "./secure/component/category-management/category-management.component";
 import {AnalyticsComponent} from "./secure/component/analytics/analytics.component";
 import {NotFoundComponent} from "./public/component/not-found/not-found.component";
+import {ApartmentComponent} from "./secure/component/apartment/apartment.component";
 
 const routes: Routes = [
   { path: '', component: SecureComponent, children : [
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'settings', component: SettingsComponent },
       { path: 'categories', component: CategoryManagementComponent },
       { path: 'analytics', component: AnalyticsComponent },
+      { path: 'apartment/list', component: ApartmentComponent },
     ] },
   { path: '',
         component: PublicComponent, children: [

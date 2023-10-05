@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {SecureModule} from "./secure/secure.module";
 import {PublicModule} from "./public/public.module";
 import {CKEditorModule} from "ckeditor4-angular";
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {CKEditorModule} from "ckeditor4-angular";
     SecureModule,
     PublicModule,
     CKEditorModule,
+    NgChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

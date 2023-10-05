@@ -40,6 +40,10 @@ export class SidebarComponent implements OnInit {
         this.activePage = 'logement';
         this.titleService.setTitle(`PRM - Logement Lists`)
         break;
+      case '/apartment/list':
+        this.activePage = 'apartment';
+        this.titleService.setTitle(`PRM - apartment Lists`)
+        break;
       case '/document/list':
         this.activePage = 'document';
         this.titleService.setTitle(`PRM - Documents Lists`)

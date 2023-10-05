@@ -13,6 +13,7 @@ import {DocumentListComponent} from "./component/document-list/document-list.com
 import {DocumentUploadComponent} from "./component/document-upload/document-upload.component";
 import {CategoryManagementComponent} from "./component/category-management/category-management.component";
 import { AnalyticsComponent } from './component/analytics/analytics.component';
+import { ApartmentComponent } from './component/apartment/apartment.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AnalyticsComponent } from './component/analytics/analytics.component';
     PublishComponent,
     SettingsComponent,
     AnalyticsComponent,
+    ApartmentComponent,
   ],
     imports: [
         CommonModule,
