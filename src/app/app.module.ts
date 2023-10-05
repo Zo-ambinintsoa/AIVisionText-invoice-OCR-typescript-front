@@ -16,7 +16,7 @@ import {CKEditorModule} from "ckeditor4-angular";
     AppRoutingModule,
     SecureModule,
     PublicModule,
-    CKEditorModule
+    CKEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

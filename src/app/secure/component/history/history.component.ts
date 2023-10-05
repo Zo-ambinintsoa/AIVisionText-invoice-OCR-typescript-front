@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent {
-
+  activityList: any[] = [];
 }

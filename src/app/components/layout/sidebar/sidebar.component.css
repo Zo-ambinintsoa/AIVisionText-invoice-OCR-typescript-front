@@ -1,0 +1,48 @@
+.container-form {
+  width: 100%;
+  max-width: 400px; /* Adjust the width as needed */
+  margin: 0 auto;
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--box-shadow);
+  background-color: var(--color-white);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  user-select: none;
+  overflow-x: hidden;
+  color: var(--color-dark);
+  background-color: var(--color-background);
+  margin-top: 10vh;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  margin-bottom: 1.5rem;
+}
+
+.register-button {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: var(--border-radius-1);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.register-button i {
+  font-family: 'Material Icons Sharp';
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}

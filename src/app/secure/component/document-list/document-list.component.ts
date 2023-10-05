@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./document-list.component.css']
 })
 export class DocumentListComponent {
+  documentList: any[] = [];
   constructor() {
 
   }

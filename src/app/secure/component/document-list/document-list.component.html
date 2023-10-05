@@ -2,7 +2,7 @@
   <app-sidebar></app-sidebar>
   <main>
     <h1 i18n="@@documentsListHeader">List of Documents</h1>
-    <div class="recent-orders">
+    <div class="table-list">
       <h2 i18n="@@recentDocuments">Recent Documents</h2>
       <table>
         <thead>
@@ -10,15 +10,28 @@
           <th i18n="@@userId">User ID</th>
           <th i18n="@@fileName">File Name</th>
           <th i18n="@@fileType">File Type</th>
-          <th i18n="@@fileContent">File Content</th>
           <th i18n="@@uploadDate">Upload Date</th>
           <th i18n="@@documentUrl">Document URL</th>
           <th i18n="@@category">Category</th>
         </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+        <tr *ngIf="documentList.length === 0">
+          <td colspan="6">
+            <h3 i18n="@@noDocumentsFound">No documents found</h3>
+          </td>
+        </tr>
+        <tr *ngFor="let documents of documentList">
+          <td>{{ documents.userId }}</td>
+          <td>{{ documents.fileName }}</td>
+          <td>{{ documents.fileType }}</td>
+          <td>{{ documents.uploadDate }}</td>
+          <td>{{ documents.documentUrl }}</td>
+          <td>{{ documents.category }}</td>
+        </tr>
+        </tbody>
       </table>
-      <a href="#" i18n="@@showAll">Show All</a>
+      <a href="#" *ngIf="documentList.length > 0" i18n="@@showAll">Show All</a>
     </div>
   </main>
   <app-header></app-header>

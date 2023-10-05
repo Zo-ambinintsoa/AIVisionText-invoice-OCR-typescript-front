@@ -340,15 +340,15 @@ main .new-users .user-list .user img{
   border-radius: 50%;
 }
 
-main .recent-orders{
+main .table-list{
   margin-top: 1.3rem;
 }
 
-main .recent-orders h2{
+main .table-list h2{
   margin-bottom: 0.8rem;
 }
 
-main .recent-orders table{
+main .table-list table{
   background-color: var(--color-white);
   width: 100%;
   padding: var(--card-padding);
@@ -358,7 +358,7 @@ main .recent-orders table{
   transition: all 0.3s ease;
 }
 
-main .recent-orders table:hover{
+main .table-list table:hover{
   box-shadow: none;
 }
 
@@ -372,11 +372,32 @@ main table tbody tr:last-child td{
   border: none;
 }
 
-main .recent-orders a{
+main .table-list a{
   text-align: center;
   display: block;
   margin: 1rem auto;
   color: var(--color-primary);
+}
+
+.card-add {
+  border-radius: var(--card-border-radius);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.user.card-add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.user.card-add a {
+  margin: 10px;
+}
+
+.card-add:hover {
+  transform: scale(1.05);
+  box-shadow: var(--box-shadow);
 }
 
 .right-section{
@@ -568,7 +589,7 @@ main .recent-orders a{
     flex-basis: 40%;
   }
 
-  main .recent-orders {
+  main .table-list {
     width: 94%;
     position: absolute;
     left: 50%;
@@ -576,7 +597,7 @@ main .recent-orders a{
     margin: 2rem 0 0 0.8rem;
   }
 
-  main .recent-orders table{
+  main .table-list table{
     width: 83vw;
   }
 
@@ -653,13 +674,13 @@ main .recent-orders a{
     flex-basis: 35%;
   }
 
-  main .recent-orders{
+  main .table-list{
     position: relative;
     margin: 3rem 0 0 0;
     width: 100%;
   }
 
-  main .recent-orders table{
+  main .table-list table{
     width: 100%;
     margin: 0;
   }

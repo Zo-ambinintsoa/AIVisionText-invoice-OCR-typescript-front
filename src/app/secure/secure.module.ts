@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { SecureComponent } from './secure.component';
 import {HeaderComponent} from "../components/layout/header/header.component";
 import {SidebarComponent} from "../components/layout/sidebar/sidebar.component";
@@ -29,9 +29,10 @@ import { AnalyticsComponent } from './component/analytics/analytics.component';
     SettingsComponent,
     AnalyticsComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        NgOptimizedImage
+    ]
 })
 export class SecureModule { }

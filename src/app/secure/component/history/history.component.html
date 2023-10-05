@@ -1,7 +1,40 @@
 <div class="container">
   <app-sidebar></app-sidebar>
   <main>
-    <h1 i18n>activities history</h1>
+    <h1 i18n>Activities History</h1>
+    <div class="table-list">
+      <table>
+        <thead>
+        <tr>
+          <th i18n="@@activityId">Activity ID</th>
+          <th i18n="@@tableName">Table Name</th>
+          <th i18n="@@recordId">Record ID</th>
+          <th i18n="@@action">Action</th>
+          <th i18n="@@oldValue">Old Value</th>
+          <th i18n="@@newValue">New Value</th>
+          <th i18n="@@timestamp">Timestamp</th>
+          <th i18n="@@user">User</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="activityList.length === 0">
+          <td colspan="8">
+            <h3 i18n="@@noActivityFound">No activity found</h3>
+          </td>
+        </tr>
+        <tr *ngFor="let activity of activityList">
+          <td>{{ activity.id }}</td>
+          <td>{{ activity.tableName }}</td>
+          <td>{{ activity.recordId }}</td>
+          <td>{{ activity.action }}</td>
+          <td>{{ activity.oldValue }}</td>
+          <td>{{ activity.newValue }}</td>
+          <td>{{ activity.timestamp }}</td>
+          <td>{{ activity.user.username }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </main>
   <app-header></app-header>
 </div>

@@ -1,7 +1,32 @@
 <div class="container">
   <app-sidebar></app-sidebar>
   <main>
-    <h1 i18n>List of User</h1>
+    <h1 i18n>List of Users</h1>
+    <div class="table-list">
+      <table>
+        <thead>
+        <tr>
+          <th i18n="@@userId">User ID</th>
+          <th i18n="@@username">Username</th>
+          <th i18n="@@email">Email</th>
+          <th i18n="@@role">Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="userList.length === 0">
+          <td colspan="4">
+            <h3 i18n="@@noUsersFound">No user found</h3>
+          </td>
+        </tr>
+        <tr *ngFor="let user of userList">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role.roleName }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </main>
   <app-header></app-header>
 </div>

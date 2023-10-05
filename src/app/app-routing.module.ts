@@ -13,6 +13,7 @@ import {PublishComponent} from "./secure/component/publish/publish.component";
 import {SettingsComponent} from "./secure/component/settings/settings.component";
 import {CategoryManagementComponent} from "./secure/component/category-management/category-management.component";
 import {AnalyticsComponent} from "./secure/component/analytics/analytics.component";
+import {NotFoundComponent} from "./public/component/not-found/not-found.component";
 
 const routes: Routes = [
   { path: '', component: SecureComponent, children : [
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
     ] },
+  { path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
