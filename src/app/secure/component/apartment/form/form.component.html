@@ -37,7 +37,13 @@
           Square Footage is required.
         </div>
       </div>
-
+      <div class="input-box">
+      <span class="details">Description</span>
+        <div class="NgxEditor__Wrapper">
+            <ngx-editor-menu [toolbar]="toolbar" [editor]="editor"> </ngx-editor-menu>
+            <ngx-editor [editor]="editor" [ngModel]="html" [placeholder]="'Type here...'"></ngx-editor>
+        </div>
+      </div>
       <!-- Property Input with Autocomplete -->
       <div class="input-box">
         <span class="details">Property</span>

@@ -1,0 +1,14 @@
+.t-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.table-list {
+  flex: 1;
+}
+
+.table-detail {
+  width: 23rem;
+}

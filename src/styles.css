@@ -116,10 +116,10 @@ b{
 
 .container{
   display: grid;
-  width: 96%;
+  width: 100%;
   margin: 0 auto;
   gap: 1.8rem;
-  grid-template-columns: 12rem auto 23rem;
+  grid-template-columns: 12rem auto 10rem;
 }
 
 aside{
@@ -339,15 +339,15 @@ main .new-users .user-list .user img{
   border-radius: 50%;
 }
 
-main .table-list{
+ .table-list{
   margin-top: 1.3rem;
 }
 
-main .table-list h2{
+.table-list h2{
   margin-bottom: 0.8rem;
 }
 
-main .table-list table{
+.table-list table{
   background-color: var(--color-white);
   width: 100%;
   padding: var(--card-padding);
@@ -357,25 +357,84 @@ main .table-list table{
   transition: all 0.3s ease;
 }
 
-main .table-list table:hover{
+.table-detail table{
+  background-color: var(--color-white);
+  width: 40%;
+  padding: var(--card-padding);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--card-border-radius);
+  transition: all 0.3s ease;
+}
+
+.table-list table:hover{
   box-shadow: none;
 }
 
-main table tbody td{
+table tbody tr:nth-child(even) {
+  background-color: var(--color-light);
+  border-radius: var(--card-border-radius);
+  border-color: var(--color-white);
+}
+
+table tbody tr:hover {
+  background-color: var(--color-primary);
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+table tbody tr:active {
+  background-color: var(--color-white);
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+table tbody td {
   height: 2.8rem;
   border-bottom: 1px solid var(--color-light);
   color: var(--color-dark-variant);
 }
 
-main table tbody tr:last-child td{
+
+table tbody td{
+  height: 2.8rem;
+  border-bottom: 1px solid var(--color-light);
+  color: var(--color-dark-variant);
+}
+
+table tbody tr:last-child td{
   border: none;
 }
 
-main .table-list a{
+
+table thead {
+  margin-bottom: 15px;
+}
+
+
+table.striped-table tbody tr:nth-child(odd) {
+  background-color: rgba(132, 139, 200, 0.18);
+}
+
+ table tbody td {
+  height: 2.8rem;
+  border-bottom: 1px solid var(--color-light);
+  color: var(--color-dark-variant);
+}
+
+
+ .table-list a{
   text-align: center;
   display: block;
   margin: 1rem auto;
   color: var(--color-primary);
+}
+
+.NgxEditor__Wrapper {
+  height: 100%; /* Set your desired height here */
+  width: 100%; /* Set your desired height here */
 }
 
 .card-add {

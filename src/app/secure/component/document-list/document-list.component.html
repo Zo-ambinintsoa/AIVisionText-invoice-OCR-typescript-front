@@ -2,6 +2,7 @@
   <app-sidebar></app-sidebar>
   <main>
     <h1 i18n="@@documentsListHeader">Lists of Documents</h1>
+    <div class="t-list">
     <div class="table-list">
       <br>
       <hr>
@@ -23,7 +24,8 @@
             <h3 i18n="@@noDocumentsFound">No documents found</h3>
           </td>
         </tr>
-        <tr *ngFor="let documents of documentList">
+        <tr *ngFor="let documents of documentList"
+          (click)="onRowClick(documents.id)" [class.selected-row]="documents === selectedDocument">
           <td>{{ documents.userId }}</td>
           <td>{{ documents.fileName }}</td>
           <td>{{ documents.fileType }}</td>
@@ -34,6 +36,38 @@
         </tbody>
       </table>
       <a href="#" *ngIf="documentList.length > 0" i18n="@@showAll">Show All</a>
+    </div>
+      <div class="table-detail">
+        <table class="" *ngIf="showDetails">
+          <tbody>
+          <tr>
+            <td>User Id:</td>
+            <td>{{ selectedDocument.userId }}</td>
+          </tr>
+          <tr>
+            <td>File Name:</td>
+            <td>{{ selectedDocument.fileName }}</td>
+          </tr>
+          <tr>
+            <td>File Type:</td>
+            <td>{{ selectedDocument.fileType }}</td>
+          </tr>
+          <tr>
+            <td>Upload Date:</td>
+            <td>{{ selectedDocument.uploadDate }}</td>
+          </tr>
+          <tr>
+            <td>Document URL:</td>
+            <td>{{ selectedDocument.documentUrl }}</td>
+          </tr>
+          <tr>
+            <td>Category:</td>
+            <td>{{ selectedDocument.category }}</td>
+          </tr>
+          <!-- Add more rows for additional details here -->
+          </tbody>
+        </table>
+      </div>
     </div>
   </main>
   <app-header></app-header>

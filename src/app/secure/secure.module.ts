@@ -18,7 +18,9 @@ import {FormLogmentComponent} from "./component/logement/form/form.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UserFormComponent} from "./component/user/form/form.component";
 import {ApartmentFormComponent} from "./component/apartment/form/form.component";
-import {CKEditorModule} from "ckeditor4-angular";
+import {HttpClientModule} from "@angular/common/http";
+import {BrowserModule} from "@angular/platform-browser";
+import {NgxEditorModule} from "ngx-editor";
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import {CKEditorModule} from "ckeditor4-angular";
     NgOptimizedImage,
     FormsModule,
     ReactiveFormsModule,
-    CKEditorModule,
+    BrowserModule,
+    HttpClientModule,
+    NgxEditorModule,
   ]
 })
 export class SecureModule { }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import {Editor, Toolbar} from 'ngx-editor';
 @Component({
   selector: 'app-apartment-form',
   templateUrl: './form.component.html',
@@ -8,13 +8,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ApartmentFormComponent {
   apartmentForm: FormGroup;
+
+  editor!: Editor;
+  html = '';
+  toolbar: Toolbar = [
+    ["bold", "italic"],
+    ["underline", "strike"],
+    ["code", "blockquote"],
+    ["ordered_list", "bullet_list"],
+    [{ heading: ["h1", "h2", "h3", "h4", "h5", "h6"] }],
+    ["link"],
+    ["text_color", "background_color"],
+    ["align_left", "align_center", "align_right", "align_justify"]
+  ];
+
+
+  filteredProperties: { name: string; id: number }[] = [];
+  propertyId = 0;
+  showAutocomplete: boolean = false;
   properties: { name: string; id: number }[] = [
     { name: 'Property 1', id: 1 },
     { name: 'Property 2', id: 2 },
   ];
-  filteredProperties: { name: string; id: number }[] = [];
-  propertyId = 0;
-  showAutocomplete: boolean = false;
+
 
   constructor(private formBuilder: FormBuilder) {
     this.apartmentForm = this.formBuilder.group({
@@ -25,6 +41,16 @@ export class ApartmentFormComponent {
       property: ['', Validators.required],
     });
   }
+
+
+  ngOnInit(): void {
+    this.editor = new Editor();
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
   onPropertyInput() {
     const inputValue = this.apartmentForm.get('property')?.value.toLowerCase();
 
@@ -49,10 +75,10 @@ export class ApartmentFormComponent {
     if (this.apartmentForm.valid) {
       this.apartmentForm.patchValue({ property : this.propertyId });
       const formData = this.apartmentForm.value;
-      // You can now handle form submission, e.g., sending data to an API
+
       console.log(formData);
     } else {
-      // Form is invalid, display error messages or handle as needed
+
     }
   }
 }
