@@ -1,7 +1,70 @@
-<div class="container">
-  <app-sidebar></app-sidebar>
-  <main>
-    <h1 i18n>Upload a document</h1>
-  </main>
-  <app-header></app-header>
+<div class="container-form">
+  <div class="title" i18n="@@loginTitle">Document Upload</div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="documentForm">
+    <div class="user-detail">
+      <!-- File Preview -->
+      <div class="image-preview">
+        <img [src]="filePreview" alt="Preview" class="rounded-image" *ngIf="filePreview" />
+      </div>
+
+      <!-- Hidden file input for selecting files -->
+      <input type="file" (change)="onFileChange($event)" accept="image/*" multiple />
+      <br>
+      <!-- Add button to add more file inputs -->
+      <button type="button" (click)="addFileInput()" class="file-input-wrapper">
+        <label for="" class="plus-button">
+          <span class="material-icons-sharp">add</span>
+        </label>
+      </button>
+
+      <!-- Display multiple file inputs here -->
+      <div class="file-input-column">
+        <div *ngFor="let fileInput of fileInputs.controls; let i = index" class="file-input-wrapper">
+          <!-- Hidden file input for selecting files -->
+          <input
+            type="file"
+            (change)="onFileChange($event, i)"
+            style="margin-top: 10px;"
+            [formControlName]="i"
+            id="fileInput{{ i }}"
+            required
+          />
+
+          <!-- Remove button -->
+          <span class="trash-button" (click)="removeFileInput(i)">
+            <span class="material-icons-sharp">delete</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Autocomplete Input -->
+      <br />
+      <br />
+      <div class="input-box">
+        <span class="details" i18n="@@dataLabel">Data</span>
+        <input
+          type="text"
+          placeholder="Search for data"
+          formControlName="data"
+          (input)="onDataInput()"
+        />
+        <div class="autocomplete-list" *ngIf="showAutocomplete">
+          <div
+            class="autocomplete-item"
+            *ngFor="let property of filteredData"
+            (click)="selectData(property)"
+          >
+            {{ property.name }}
+          </div>
+        </div>
+        <div class="error-message" *ngIf="documentForm.get('data')?.invalid && documentForm.get('data')?.touched">
+          Data is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="register-button" [disabled]="documentForm.invalid"><div i18n="@@loginButton">Upload</div>
+    </button>
+  </form>
 </div>

@@ -212,6 +212,8 @@ input[type="number"] {
   cursor: not-allowed;
 }
 
+
+
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .container-form {

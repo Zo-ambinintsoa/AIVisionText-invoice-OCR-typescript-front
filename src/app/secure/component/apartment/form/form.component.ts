@@ -13,6 +13,7 @@ export class ApartmentFormComponent {
     { name: 'Property 2', id: 2 },
   ];
   filteredProperties: { name: string; id: number }[] = [];
+  propertyId = 0;
   showAutocomplete: boolean = false;
 
   constructor(private formBuilder: FormBuilder) {
@@ -39,12 +40,14 @@ export class ApartmentFormComponent {
   }
 
   selectProperty(property: { name: string; id: number }) {
-    this.apartmentForm.get('property')?.setValue(property.id);
+    this.apartmentForm.get('property')?.setValue(property.name);
+    this.propertyId = property.id;
     this.showAutocomplete = false;
   }
 
   onSubmit() {
     if (this.apartmentForm.valid) {
+      this.apartmentForm.patchValue({ property : this.propertyId });
       const formData = this.apartmentForm.value;
       // You can now handle form submission, e.g., sending data to an API
       console.log(formData);

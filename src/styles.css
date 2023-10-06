@@ -318,7 +318,6 @@ main .new-users .user-list{
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 1.4rem;
-  cursor: pointer;
   transition: all 0.3s ease;
 }
 
@@ -393,6 +392,13 @@ main .table-list a{
 
 .user.card-add a {
   margin: 10px;
+}
+
+.user.card-add button {
+  margin: 10px;
+  background-color: var(--color-white);
+  color: white; /* Text color set to white */
+  cursor: pointer;
 }
 
 .card-add:hover {

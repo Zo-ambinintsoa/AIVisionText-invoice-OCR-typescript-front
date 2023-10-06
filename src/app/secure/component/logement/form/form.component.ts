@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-form-logement',
+  selector: 'app-logement-form',
   templateUrl: './form.component.html',
   styleUrls: [ '../../../../public/public.component.css', './form.component.css']
 })
@@ -14,6 +14,7 @@ export class FormLogmentComponent {
     { name: 'Owner 2', id: 2 },
     // Add more owners here
   ];
+  filteredProperties: { name: string; id: number }[] = [];
 
   showAutocomplete: boolean = false;
 

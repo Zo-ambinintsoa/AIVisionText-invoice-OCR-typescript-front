@@ -1,43 +1,41 @@
 <div class="container">
   <app-sidebar></app-sidebar>
   <main>
-    <h1 i18n>/ Publish</h1>
+    <h1 i18n>Publish</h1>
     <div class="new-users">
-        <br>
-          <hr>
-        <br>
+      <br>
+      <hr>
+      <br>
       <div class="user-list">
         <div class="user card-add">
-          <a href="/">
-            <img ngSrc="assets/plus.png" height="3000" width="3000">
+          <button (click)="toggleDocumentForm()">
+            <img src="assets/plus.png" height="30" width="30">
             <p i18n>New Document</p>
-          </a>
+          </button>
         </div>
         <div class="user card-add">
-          <a href="/">
-            <img ngSrc="assets/plus.png" height="3000" width="3000">
+          <button (click)="toggleLogementForm()">
+            <img src="assets/plus.png" height="30" width="30">
             <p i18n>New Logement</p>
-          </a>
+          </button>
         </div>
         <div class="user card-add">
-          <a href="/">
-            <img ngSrc="assets/plus.png" height="3000" width="3000">
+          <button (click)="toggleApartmentForm()">
+            <img src="assets/plus.png" height="30" width="30">
             <p i18n>New Apartment</p>
-          </a>
-        </div>
-        <div class="user card-add">
-          <a href="/">
-            <img ngSrc="assets/plus.png" height="3000" width="3000">
-            <p i18n>New User</p>
-          </a>
+          </button>
         </div>
       </div>
     </div>
     <br>
     <hr>
     <br>
-   <app-apartment-form></app-apartment-form>
+
+    <!-- the forms with ngIf to conditionally display -->
+
+    <app-document-upload *ngIf="showDocumentForm"></app-document-upload>
+    <app-apartment-form *ngIf="showApartmentForm"></app-apartment-form>
+    <app-logement-form *ngIf="showLogementForm"></app-logement-form>
   </main>
   <app-header></app-header>
 </div>
-
