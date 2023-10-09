@@ -12,6 +12,8 @@ export class DocumentListComponent implements OnInit {
   selectedDocument: any = {};
   selectedBefore!:number;
 
+  selectedDocumentId: number | null = null;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -38,5 +40,32 @@ export class DocumentListComponent implements OnInit {
         }
       );
     }
+  }
+
+
+
+  toggleButton(documentId: number) {
+    if (this.selectedDocumentId === documentId) {
+      this.selectedDocumentId = null; // Close the button if it's already open
+    } else {
+      this.selectedDocumentId = documentId;
+    }
+  }
+
+  deleteDocument(id: number) {
+    const apiUrl = `http://localhost:3000/documents/${id}`; // Replace with your JSON server URL
+    this.http.delete(apiUrl).subscribe(
+      () => {
+        // Success: Document deleted, you can handle this as needed (e.g., update documentList)
+        console.log(`Document with ID ${id} deleted successfully.`);
+        // Reload the page after deletion
+        window.location.reload();
+      },
+      (error) => {
+        // Handle errors here
+        console.error(`Error deleting document with ID ${id}:`, error);
+        // You can show an error message or take other actions based on the error.
+      }
+    );
   }
 }

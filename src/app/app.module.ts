@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {SecureModule} from "./secure/secure.module";
 import {PublicModule} from "./public/public.module";
 import { NgChartsModule } from 'ng2-charts';
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NgChartsModule } from 'ng2-charts';
     AppRoutingModule,
     SecureModule,
     PublicModule,
+    SweetAlert2Module.forRoot(),
     NgChartsModule,
   ],
   providers: [],

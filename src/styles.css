@@ -339,6 +339,28 @@ main .new-users .user-list .user img{
   border-radius: 50%;
 }
 
+.btn-action {
+  display: inline-block;
+  margin: 2px; /* Add margin to create some space between buttons */
+  padding: 4px 8px;
+  font-size: 16px; /* Make them bigger */
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s; /* Transition for smooth hover effect */
+}
+
+.btn-action:hover {
+  filter: brightness(1.2);
+  transform: scale(1.03);
+}
+
+.btn-action.delete {
+  background-color: var(--color-white);
+}
+
+
  .table-list{
   margin-top: 1.3rem;
 }
@@ -380,14 +402,14 @@ table tbody tr:nth-child(even) {
 table tbody tr:hover {
   background-color: var(--color-primary);
   cursor: pointer;
-  transform: scale(1.05);
+  transform: scale(1.03);
   transition: background-color 0.3s, transform 0.3s;
 }
 
 table tbody tr:active {
   background-color: var(--color-white);
   cursor: pointer;
-  transform: scale(1.05);
+  transform: scale(1.03);
   transition: background-color 0.3s, transform 0.3s;
 }
 
@@ -403,6 +425,7 @@ table tbody td{
   border-bottom: 1px solid var(--color-light);
   color: var(--color-dark-variant);
 }
+
 
 table tbody tr:last-child td{
   border: none;
@@ -424,8 +447,23 @@ table.striped-table tbody tr:nth-child(odd) {
   color: var(--color-dark-variant);
 }
 
+.t-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
 
- .table-list a{
+.table-list {
+  flex: 1;
+}
+
+.table-detail {
+  width: 23rem;
+}
+
+
+.table-list a{
   text-align: center;
   display: block;
   margin: 1rem auto;

@@ -5,6 +5,7 @@
     <br>
     <hr>
     <br>
+    <div class="t-list">
     <div class="table-list">
       <table>
         <thead>
@@ -25,18 +26,69 @@
             <h3 i18n="@@noLogementsFound">No properties found</h3>
           </td>
         </tr>
-        <tr *ngFor="let logement of logementList">
+        <tr *ngFor="let logement of logementList"
+            (click)="toggleLogementDetails(logement.id);" [class.selected-row]="logement === selectedLogement">
           <td>{{ logement.id }}</td>
           <td>{{ logement.name }}</td>
           <td>{{ logement.type }}</td>
           <td>{{ logement.address }}</td>
           <td>{{ logement.numberOfUnits }}</td>
-          <td>{{ logement.owner }}</td>
+          <td>{{ logement.owner.name }}</td>
           <td>{{ logement.amenities }}</td>
           <td>{{ logement.maintenanceContact }}</td>
         </tr>
         </tbody>
       </table>
+    </div>
+    <div class="table-detail">
+      <table class="" *ngIf="showDetails">
+        <tbody>
+        <tr>
+          <td i18n>Property ID:</td>
+          <td>{{ selectedLogement.id }}</td>
+        </tr>
+        <tr>
+          <td i18n>Property Name:</td>
+          <td>{{ selectedLogement.name }}</td>
+        </tr>
+        <tr>
+          <td i18n>Property Type:</td>
+          <td>{{ selectedLogement.type }}</td>
+        </tr>
+        <tr>
+          <td i18n>Address:</td>
+          <td>{{ selectedLogement.address }}</td>
+        </tr>
+        <tr>
+          <td i18n>Number of Units:</td>
+          <td>{{ selectedLogement.numberOfUnits }}</td>
+        </tr>
+        <tr>
+          <td i18n>Owner/Manager:</td>
+          <td>{{ selectedLogement.owner.name }}</td>
+        </tr>
+        <tr>
+          <td i18n>Amenities:</td>
+          <td>{{ selectedLogement.amenities }}</td>
+        </tr>
+        <tr>
+          <td i18n>Maintenance Contact:</td>
+          <td>{{ selectedLogement.maintenanceContact }}</td>
+        </tr>
+        <tr>
+          <td i18n>Actions:</td>
+          <td>
+            <a href="/logement/edit/{{selectedLogement.id}}" class="success btn-action"><i class="material-icons-sharp">edit</i></a>
+            <button [swal]="deleteSwal" (confirm)="deleteLogement(selectedLogement.id)" class="danger btn-action btn-delete">
+              <i class="material-icons-sharp">delete</i>
+            </button>
+            <swal #deleteSwal title="Delete {{ selectedLogement.name }}?" [showCancelButton]="true" icon="question"></swal>
+            <a href="/logement/view/{{selectedLogement.id}}" class="warning btn-action"><i class="material-icons-sharp">visibility</i></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
     </div>
   </main>
   <app-header></app-header>

@@ -5,6 +5,7 @@
     <br>
     <hr>
     <br>
+    <div class="t-list">
     <div class="table-list">
       <table>
         <thead>
@@ -23,16 +24,60 @@
             <h3 i18n="@@noApartmentsFound">No apartments found</h3>
           </td>
         </tr>
-        <tr *ngFor="let apartment of apartmentList">
+        <tr *ngFor="let apartment of apartmentList"
+            (click)="onRowClick(apartment.id);" [class.selected-row]="apartment === selectedApartment">
           <td>{{ apartment.id }}</td>
           <td>{{ apartment.unitNumber }}</td>
           <td>{{ apartment.numberOfBedrooms }}</td>
           <td>{{ apartment.numberOfBathrooms }}</td>
           <td>{{ apartment.squareFootage }}</td>
-          <td>{{ apartment.property.propertyName }}</td>
+          <td>{{ apartment.property.name }}</td>
         </tr>
         </tbody>
       </table>
+      <a href="#" *ngIf="apartmentList.length > 0" i18n="@@showAll">Show All</a>
+    </div>
+    <div class="table-detail">
+      <table class="t-details" *ngIf="showDetails">
+        <tbody>
+        <tr>
+          <td i18n>Apartment ID:</td>
+          <td>{{ selectedApartment.id }}</td>
+        </tr>
+        <tr>
+          <td i18n>Unit Number:</td>
+          <td>{{ selectedApartment.unitNumber }}</td>
+        </tr>
+        <tr>
+          <td i18n>Bedrooms:</td>
+          <td>{{ selectedApartment.numberOfBedrooms }}</td>
+        </tr>
+        <tr>
+          <td i18n>Bathrooms:</td>
+          <td>{{ selectedApartment.numberOfBathrooms }}</td>
+        </tr>
+        <tr>
+          <td i18n>Square Footage:</td>
+          <td>{{ selectedApartment.squareFootage }}</td>
+        </tr>
+        <tr>
+          <td i18n>Property:</td>
+          <td>{{ selectedApartment.property.name }}</td>
+        </tr>
+        <tr>
+          <td i18n>Actions:</td>
+          <td>
+            <a href="/apartment/edit/{{selectedApartment.id}}" class="success btn-action"><i class="material-icons-sharp">edit</i></a>
+            <button [swal]="deleteSwal" (confirm)="deleteApartment(selectedApartment.id)" class="danger btn-action btn-delete">
+              <i class="material-icons-sharp">delete</i>
+            </button>
+            <swal #deleteSwal title="Delete {{ selectedApartment.unitNumber }}?" [showCancelButton]="true" icon="question"></swal>
+            <a href="/apartment/view/{{selectedApartment.id}}" class="warning btn-action"><i class="material-icons-sharp">visibility</i></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
     </div>
   </main>
   <app-header></app-header>

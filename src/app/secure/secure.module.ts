@@ -21,6 +21,7 @@ import {ApartmentFormComponent} from "./component/apartment/form/form.component"
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgxEditorModule} from "ngx-editor";
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 
 @NgModule({
@@ -28,11 +29,11 @@ import {NgxEditorModule} from "ngx-editor";
     SecureComponent,
     SidebarComponent,
     DocumentListComponent,
+    HistoryComponent,
     DocumentUploadComponent,
     CategoryManagementComponent,
     HeaderComponent,
     UserListComponent,
-    HistoryComponent,
     LogementListComponent,
     PublishComponent,
     SettingsComponent,
@@ -52,6 +53,7 @@ import {NgxEditorModule} from "ngx-editor";
     BrowserModule,
     HttpClientModule,
     NgxEditorModule,
+    SweetAlert2Module,
   ]
 })
 export class SecureModule { }

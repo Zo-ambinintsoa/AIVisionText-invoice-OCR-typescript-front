@@ -35,6 +35,7 @@ export class ApartmentFormComponent {
   constructor(private formBuilder: FormBuilder) {
     this.apartmentForm = this.formBuilder.group({
       unitNumber: ['', Validators.required],
+      description: ['', Validators.required],
       numberOfBedrooms: ['', Validators.required],
       numberOfBathrooms: ['', Validators.required],
       squareFootage: ['', Validators.required],
@@ -75,7 +76,6 @@ export class ApartmentFormComponent {
     if (this.apartmentForm.valid) {
       this.apartmentForm.patchValue({ property : this.propertyId });
       const formData = this.apartmentForm.value;
-
       console.log(formData);
     } else {
 

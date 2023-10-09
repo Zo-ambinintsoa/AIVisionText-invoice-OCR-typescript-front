@@ -25,7 +25,7 @@
           </td>
         </tr>
         <tr *ngFor="let documents of documentList"
-          (click)="onRowClick(documents.id)" [class.selected-row]="documents === selectedDocument">
+          (click)="onRowClick(documents.id); toggleButton(documents.id);" [class.selected-row]="documents === selectedDocument">
           <td>{{ documents.userId }}</td>
           <td>{{ documents.fileName }}</td>
           <td>{{ documents.fileType }}</td>
@@ -64,7 +64,16 @@
             <td>Category:</td>
             <td>{{ selectedDocument.category }}</td>
           </tr>
-          <!-- Add more rows for additional details here -->
+          <tr>
+            <td>Category:</td>
+            <td>
+              <a href="/document/edit/{{selectedDocument.id}}" class="success btn-action"><i class="material-icons-sharp">edit</i></a>
+              <button [swal]="deleteSwal" (confirm)="deleteDocument(selectedDocument.id)" class="danger btn-action btn-delete">
+                <i class="material-icons-sharp">delete</i>
+              </button>
+              <swal #deleteSwal title="Delete {{ selectedDocument.fileName }}?" [showCancelButton]="true" icon="question"></swal>
+              <a href="/document/view/{{selectedDocument.id}}" class="warning btn-action"><i class="material-icons-sharp">visibility</i></a>
+          </tr>
           </tbody>
         </table>
       </div>
