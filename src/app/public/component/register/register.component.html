@@ -1,50 +1,59 @@
 <div class="body">
+  <div class="container-form">
+    <div class="title" i18n="@@registerTitle">Register</div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+      <div class="user-detail">
+        <!-- Full Name Input -->
+        <div class="input-box col-12">
+          <span class="details" i18n="@@fullNameLabel">Full Name</span>
+          <input type="text" placeholder="Enter your Name" formControlName="fullName" />
+        </div>
 
+        <!-- Username Input -->
+        <div class="input-box col-12">
+          <span class="details" i18n="@@usernameLabel">Username</span>
+          <input type="text" placeholder="Enter your Username" formControlName="username" />
+        </div>
 
-<div class="container-form">
-  <div class="title" i18n="@@registerTitle">Register</div>
-  <form action="#" method="post">
-    <div class="user-detail">
-      <div class="input-box col-12">
-        <span class="details" i18n="@@fullNameLabel">Full Name</span>
-        <input type="text" placeholder="Enter your Name">
-      </div>
+        <!-- Email Input -->
+        <div class="input-box">
+          <span class="details" i18n="@@emailLabel">Email</span>
+          <input type="email" placeholder="Enter your email" formControlName="email" />
+        </div>
 
-      <div class="input-box col-12">
-        <span class="details" i18n="@@usernameLabel">Username</span>
-        <input type="text" placeholder="Enter your Username">
-      </div>
-
-      <div class="input-box">
-        <span class="details" i18n="@@emailLabel">Email</span>
-        <input type="text" placeholder="Enter your email">
-      </div>
-
-      <div class="row">
-        <div class="col-6">
-          <div class="input-box">
-            <span class="details" i18n="@@passwordLabel">Password</span>
-            <input type="text" placeholder="Enter your password">
+        <!-- Password and Confirm Password Inputs -->
+        <div class="row">
+          <div class="col-6">
+            <div class="input-box">
+              <span class="details" i18n="@@passwordLabel">Password</span>
+              <input type="password" placeholder="Enter your password" formControlName="password" />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="input-box">
+              <span class="details" i18n="@@confirmPasswordLabel">Confirm Password</span>
+              <input type="password" placeholder="Re-enter your password" formControlName="confirmPassword" />
+            </div>
           </div>
         </div>
-        <div class="col-6">
-          <div class="input-box">
-            <span class="details" i18n="@@confirmPasswordLabel">Confirm Password</span>
-            <input type="text" placeholder="Renter your password">
-          </div>
+        <!-- Error Messages for Password Mismatch and Validation -->
+        <div class="error-message" *ngIf="registerForm.hasError('passwordMismatch')">
+          Passwords do not match.
+        </div>
+        <div class="error-message" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          Password must be at least 8 characters long and contain at least one special character.
         </div>
       </div>
-    </div>
 
-    <!-- "Have an account? Login here" link -->
-    <p class="login-link">
-      <span i18n="@@haveAccount">Have an account?</span> <a href="/login" i18n="@@loginLink">Login here</a>
-    </p>
+      <!-- "Have an account? Login here" link -->
+      <p class="login-link">
+        <span i18n="@@haveAccount">Have an account?</span> <a href="/login" i18n="@@loginLink">Login here</a>
+      </p>
 
-    <!-- Register button with Google Material Icons Sharp icon -->
-    <button class="register-button">
-      <i class="material-icons-sharp">person_add</i> <p i18n="@@registerButton"> Register</p>
-    </button>
-  </form>
-</div>
+      <!-- Register Button -->
+      <button type="submit" class="register-button" [disabled]="registerForm.invalid">
+        <i class="material-icons-sharp">person_add</i> <p i18n="@@registerButton"> Register</p>
+      </button>
+    </form>
+  </div>
 </div>

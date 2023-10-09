@@ -1,28 +1,30 @@
 <div class="body">
   <div class="container-form">
     <div class="title" i18n="@@loginTitle">Login</div>
-    <form action="#" method="post">
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
       <div class="user-detail">
-
+        <!-- Email Input -->
         <div class="input-box">
           <span class="details" i18n="@@emailLabel">Email</span>
-          <input type="text" placeholder="Enter your email" name="email">
+          <input type="email" placeholder="Enter your email" formControlName="email" />
         </div>
+
+        <!-- Password Input -->
         <div class="input-box">
           <span class="details" i18n="@@passwordLabel">Password</span>
-          <input type="text" placeholder="Enter your password" name="password">
+          <input type="password" placeholder="Enter your password" formControlName="password" />
         </div>
       </div>
+
       <!-- "Have an account? Login here" link -->
       <p class="login-link">
         <span i18n="@@dontHaveAccount">Don't have an account?</span> <a href="/register" i18n="@@registerLink">Register here</a>
       </p>
 
-      <!-- Register button with Google Material Icons Sharp icon -->
-      <button class="register-button">
+      <!-- Login Button -->
+      <button type="submit" class="register-button" [disabled]="loginForm.invalid">
         <i class="material-icons-sharp">login</i> <div i18n="@@loginButton">Login</div>
       </button>
-
     </form>
   </div>
 </div>

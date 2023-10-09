@@ -6,6 +6,7 @@ import { RegisterComponent } from './component/register/register.component';
 import {RouterModule} from "@angular/router";
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { ToastComponent } from './component/toast/toast.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ToastComponent } from './component/toast/toast.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ]
 })
 export class PublicModule { }
