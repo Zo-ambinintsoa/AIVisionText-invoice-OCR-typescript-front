@@ -114,7 +114,7 @@ b{
   color: var(--color-warning);
 }
 
-.container{
+.container-cil{
   display: grid;
   width: 100%;
   margin: 0 auto;
@@ -406,6 +406,10 @@ table tbody tr:hover {
   transition: background-color 0.3s, transform 0.3s;
 }
 
+table {
+margin: 2rem;
+}
+
 table tbody tr:active {
   background-color: var(--color-white);
   cursor: pointer;
@@ -661,7 +665,7 @@ table.striped-table tbody tr:nth-child(odd) {
 }
 
 @media screen and (max-width: 1200px) {
-  .container{
+  .container-cil{
     width: 95%;
     grid-template-columns: 7rem auto 23rem;
   }
@@ -717,7 +721,7 @@ table.striped-table tbody tr:nth-child(odd) {
 }
 
 @media screen and (max-width: 768px) {
-  .container{
+  .container-cil{
     width: 100%;
     grid-template-columns: 1fr;
     padding: 0 var(--padding-1);

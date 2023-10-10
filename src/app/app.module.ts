@@ -7,6 +7,8 @@ import {SecureModule} from "./secure/secure.module";
 import {PublicModule} from "./public/public.module";
 import { NgChartsModule } from 'ng2-charts';
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {FooterModule} from "./components/layout/footer/footer.module";
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
     PublicModule,
     SweetAlert2Module.forRoot(),
     NgChartsModule,
+    NgbModule,
+    FooterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

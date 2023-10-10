@@ -22,6 +22,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgxEditorModule} from "ngx-editor";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import {FooterModule} from "../components/layout/footer/footer.module";
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
     HttpClientModule,
     NgxEditorModule,
     SweetAlert2Module,
+    FooterModule,
   ]
 })
 export class SecureModule { }
