@@ -8,6 +8,17 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class FormLogmentComponent {
   propertyForm: FormGroup;
+
+  mapOptions: google.maps.MapOptions = {
+    center: { lat: -21.115141, lng: 55.536384 },
+    zoom: 14,
+    disableDefaultUI: true,
+    zoomControl: true,
+    mapTypeControl: true,
+    streetViewControl: false,
+    fullscreenControl: true,
+  };
+
   selectedOwner: string = '';
   owners: any[] = [
     { name: 'Owner 1', id: 1 },

@@ -10,6 +10,7 @@ export class ApartmentComponent implements OnInit {
   apartmentList: any[] = [];
   showDetails: boolean = false;
   selectedApartment: any = {};
+  showDropdown: boolean = false;
 
   constructor(private http: HttpClient) {}
 

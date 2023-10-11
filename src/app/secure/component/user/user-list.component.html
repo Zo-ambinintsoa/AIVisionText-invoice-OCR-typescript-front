@@ -1,65 +1,109 @@
-<h1 i18n>Lists of Users</h1>
-    <br>
-    <hr>
-    <br>
-    <div class="t-list">
-    <div class="table-list">
-      <table>
-        <thead>
-        <tr>
-          <th i18n="@@userId">User ID</th>
-          <th i18n="@@username">Username</th>
-          <th i18n="@@email">Email</th>
-          <th i18n="@@role">Role</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngIf="userList.length === 0">
-          <td colspan="4">
-            <h3 i18n="@@noUsersFound">No user found</h3>
-          </td>
-        </tr>
-        <tr *ngFor="let user of userList"
-            (click)="toggleUserDetails(user.id);" [class.selected-row]="user === selectedUser">
-          <td>{{ user.id }}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.role.roleName }}</td>
-        </tr>
-        </tbody>
-      </table>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item">Lists of Users</li>
+    <li class="breadcrumb-item active" aria-current="page">List</li>
+  </ol>
+</nav>
+
+<div class="row">
+  <!-- User List Table (Large Screens: col-9, Mobile: col-12) -->
+  <div [ngClass]="showDetails ? 'col-lg-9 col-12' : 'col-lg-12 col-12'" class="mb-sm-2">
+    <div class="card">
+      <div class="card-body">
+        <form class="form-inline float-right mb-2">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" i18n>Search</button>
+        </form>
+        <table class="table">
+          <thead>
+          <tr>
+            <th i18n="@@userId">User ID</th>
+            <th i18n="@@username">Username</th>
+            <th i18n="@@email">Email</th>
+            <th i18n="@@role">Role</th>
+            <th *ngIf="!showDetails">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngIf="userList.length === 0">
+            <td colspan="4">
+              <h3 i18n="@@noUsersFound" class="text-center">No user found</h3>
+            </td>
+          </tr>
+          <tr *ngFor="let user of userList"
+              (click)="toggleUserDetails(user.id);" [class.selected-row]="user === selectedUser">
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role.roleName }}</td>
+            <td *ngIf="!showDetails">
+              <a href="/user/edit/{{user.id}}" class="btn btn-outline-info rounded-circle mx-1">
+                <i class="fa fa-edit"></i>
+              </a>
+              <button [swal]="deleteSwal" (confirm)="deleteUser(user.id)" class="btn btn-outline-danger rounded-circle mx-1">
+                <i class="fa fa-trash"></i>
+              </button>
+              <swal #deleteSwal title="Delete {{ user.username }}?" [showCancelButton]="true" icon="question"></swal>
+              <a href="/user/view/{{user.id}}" class="btn btn-outline-info rounded-circle mx-1">
+                <i class="fa fa-eye"></i>
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="table-detail">
-      <table class="t-details" *ngIf="showDetails">
-        <tbody>
-        <tr>
-          <td i18n>User ID:</td>
-          <td>{{ selectedUser.id }}</td>
-        </tr>
-        <tr>
-          <td i18n>Username:</td>
-          <td>{{ selectedUser.username }}</td>
-        </tr>
-        <tr>
-          <td i18n>Email:</td>
-          <td>{{ selectedUser.email }}</td>
-        </tr>
-        <tr>
-          <td i18n>Role:</td>
-          <td>{{ selectedUser.role.roleName }}</td>
-        </tr>
-        <tr>
-          <td i18n>Actions:</td>
-          <td>
-            <a href="/user/edit/{{selectedUser.id}}" class="success btn-action"><i class="material-icons-sharp">edit</i></a>
-            <button [swal]="deleteSwal" (confirm)="deleteUser(selectedUser.id)" class="danger btn-action btn-delete">
-              <i class="material-icons-sharp">delete</i>
-            </button>
-            <swal #deleteSwal title="Delete {{ selectedUser.username }}?" [showCancelButton]="true" icon="question"></swal>
-            <a href="/user/view/{{selectedUser.id}}" class="warning btn-action"><i class="material-icons-sharp">visibility</i></a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+  </div>
+
+  <!-- User Details Table (Large Screens: Hidden, Mobile: col-9) -->
+  <div class="col-lg-3 col-sm-12 pt-sm-1" *ngIf="showDetails">
+    <div class="card">
+      <div class="card-body">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" i18n>User Details</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>User ID:</strong>
+                  <span>{{ selectedUser.id }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>Username:</strong>
+                  <span>{{ selectedUser.username }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>Email:</strong>
+                  <span>{{ selectedUser.email }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>Role:</strong>
+                  <span>{{ selectedUser.role.roleName }}</span>
+                </div>
+              </li>
+            </ul>
+            <div class="card-footer d-flex justify-content-center">
+              <a href="/user/edit/{{selectedUser.id}}" class="btn btn-outline-info rounded-circle mx-2">
+                <i class="fa fa-edit"></i>
+              </a>
+              <button [swal]="deleteSwal" (confirm)="deleteUser(selectedUser.id)" class="btn btn-outline-danger rounded-circle mx-2">
+                <i class="fa fa-trash"></i>
+              </button>
+              <swal #deleteSwal title="Delete {{ selectedUser.username }}?" [showCancelButton]="true" icon="question"></swal>
+              <a href="/user/view/{{selectedUser.id}}" class="btn btn-outline-info rounded-circle mx-2">
+                <i class="fa fa-eye"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
+  </div>
+</div>

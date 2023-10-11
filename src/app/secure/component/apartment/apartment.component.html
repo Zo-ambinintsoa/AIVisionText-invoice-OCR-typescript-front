@@ -1,80 +1,134 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item">Apartment</li>
+    <li class="breadcrumb-item active" aria-current="page">List</li>
+  </ol>
+</nav>
 
-    <h1 i18n>Lists of Apartments</h1>
-    <br>
-    <hr>
-    <br>
-    <div class="t-list">
-    <div class="table-list">
-      <table>
-        <thead>
-        <tr>
-          <th i18n="@@apartmentId">Apartment ID</th>
-          <th i18n="@@unitNumber">Unit Number</th>
-          <th i18n="@@numberOfBedrooms">Bedrooms</th>
-          <th i18n="@@numberOfBathrooms">Bathrooms</th>
-          <th i18n="@@squareFootage">Square Footage</th>
-          <th i18n="@@property">Property</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngIf="apartmentList.length === 0">
-          <td colspan="6">
-            <h3 i18n="@@noApartmentsFound">No apartments found</h3>
-          </td>
-        </tr>
-        <tr *ngFor="let apartment of apartmentList"
-            (click)="onRowClick(apartment.id);" [class.selected-row]="apartment === selectedApartment">
-          <td>{{ apartment.id }}</td>
-          <td>{{ apartment.unitNumber }}</td>
-          <td>{{ apartment.numberOfBedrooms }}</td>
-          <td>{{ apartment.numberOfBathrooms }}</td>
-          <td>{{ apartment.squareFootage }}</td>
-          <td>{{ apartment.property.name }}</td>
-        </tr>
-        </tbody>
-      </table>
-      <a href="#" *ngIf="apartmentList.length > 0" i18n="@@showAll">Show All</a>
+<div class="row">
+  <!-- Apartment List Table (Large Screens: col-9, Mobile: col-12) -->
+  <div [ngClass]="showDetails ? 'col-lg-9 col-12' : 'col-lg-12 col-12'" class="mb-sm-2">
+    <div class="card">
+      <div class="card-body">
+            <form class="form-inline float-right mb-2">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" i18n>Search</button>
+            </form>
+            <table class="table">
+              <thead>
+              <tr>
+                <th i18n="@@apartmentId">Apartment ID</th>
+                <th i18n="@@unitNumber">Unit Number</th>
+                <th i18n="@@numberOfBedrooms">Bedrooms</th>
+                <th i18n="@@numberOfBathrooms">Bathrooms</th>
+                <th i18n="@@squareFootage">Square Footage</th>
+                <th i18n="@@property">Property</th>
+                <th *ngIf="!showDetails">Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngIf="apartmentList.length === 0">
+                <td colspan="6">
+                  <h3 i18n="@@noApartmentsFound" class="text-center">No apartments found</h3>
+                </td>
+              </tr>
+              <tr *ngFor="let apartment of apartmentList"
+                  (click)="onRowClick(apartment.id);" [class.selected-row]="apartment === selectedApartment">
+                <td>{{ apartment.id }}</td>
+                <td>{{ apartment.unitNumber }}</td>
+                <td>{{ apartment.numberOfBedrooms }}</td>
+                <td>{{ apartment.numberOfBathrooms }}</td>
+                <td>{{ apartment.squareFootage }}</td>
+                <td>{{ apartment.property.name }}</td>
+                <td *ngIf="!showDetails">
+                    <a href="/apartment/edit/{{apartment.id}}" class="btn btn-outline-info rounded-circle mx-1">
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <a href="/apartment/view/{{apartment.id}}" class="btn btn-outline-info rounded-circle mx-1">
+                      <i class="fa fa-eye"></i>
+                    </a>
+                    <button [swal]="deleteSwal" (confirm)="deleteApartment(apartment.id)" class="btn btn-outline-danger rounded-circle mx-1">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                    <swal #deleteSwal title="Delete {{ apartment.unitNumber }}?" [showCancelButton]="true" icon="question"></swal>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+              <nav aria-label="Page navigation example" class=" float-right" *ngIf="apartmentList.length > 0">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+              </nav>
+      </div>
     </div>
-    <div class="table-detail">
-      <table class="t-details" *ngIf="showDetails">
-        <tbody>
-        <tr>
-          <td i18n>Apartment ID:</td>
-          <td>{{ selectedApartment.id }}</td>
-        </tr>
-        <tr>
-          <td i18n>Unit Number:</td>
-          <td>{{ selectedApartment.unitNumber }}</td>
-        </tr>
-        <tr>
-          <td i18n>Bedrooms:</td>
-          <td>{{ selectedApartment.numberOfBedrooms }}</td>
-        </tr>
-        <tr>
-          <td i18n>Bathrooms:</td>
-          <td>{{ selectedApartment.numberOfBathrooms }}</td>
-        </tr>
-        <tr>
-          <td i18n>Square Footage:</td>
-          <td>{{ selectedApartment.squareFootage }}</td>
-        </tr>
-        <tr>
-          <td i18n>Property:</td>
-          <td>{{ selectedApartment.property.name }}</td>
-        </tr>
-        <tr>
-          <td i18n>Actions:</td>
-          <td>
-            <a href="/apartment/edit/{{selectedApartment.id}}" class="success btn-action"><i class="material-icons-sharp">edit</i></a>
-            <button [swal]="deleteSwal" (confirm)="deleteApartment(selectedApartment.id)" class="danger btn-action btn-delete">
-              <i class="material-icons-sharp">delete</i>
-            </button>
-            <swal #deleteSwal title="Delete {{ selectedApartment.unitNumber }}?" [showCancelButton]="true" icon="question"></swal>
-            <a href="/apartment/view/{{selectedApartment.id}}" class="warning btn-action"><i class="material-icons-sharp">visibility</i></a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
+  </div>
 
+  <!-- Apartment Details Table (Large Screens: Hidden, Mobile: col-9) -->
+  <div class="col-lg-3 col-sm-12 pt-sm-1" *ngIf="showDetails">
+    <div class="card">
+      <div class="card-body">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" i18n>Apartment Details</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between">
+                    <strong i18n>Apartment ID:</strong>
+                    <span>{{ selectedApartment.id }}</span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between">
+                    <strong i18n>Unit Number:</strong>
+                    <span>{{ selectedApartment.unitNumber }}</span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between">
+                    <strong i18n>Bedrooms:</strong>
+                    <span>{{ selectedApartment.numberOfBedrooms }}</span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between">
+                    <strong i18n>Bathrooms:</strong>
+                    <span>{{ selectedApartment.numberOfBathrooms }}</span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between">
+                    <strong i18n>Square Footage:</strong>
+                    <span>{{ selectedApartment.squareFootage }}</span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between">
+                    <strong i18n>Property:</strong>
+                    <span>{{ selectedApartment.property.name }}</span>
+                  </div>
+                </li>
+              </ul>
+              <div class="card-footer d-flex justify-content-center">
+                <a href="/apartment/edit/{{selectedApartment.id}}" class="btn btn-outline-info rounded-circle mx-2">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a href="/apartment/view/{{selectedApartment.id}}" class="btn btn-outline-info rounded-circle mx-2">
+                  <i class="fa fa-eye"></i>
+                </a>
+                <button [swal]="deleteSwal" (confirm)="deleteApartment(selectedApartment.id)" class="btn btn-outline-danger rounded-circle mx-2">
+                  <i class="fa fa-trash"></i>
+                </button>
+                <swal #deleteSwal title="Delete {{ selectedApartment.unitNumber }}?" [showCancelButton]="true" icon="question"></swal>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

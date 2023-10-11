@@ -1,90 +1,157 @@
-<h1 i18n>Lists of Properties</h1>
-    <br>
-    <hr>
-    <br>
-    <div class="t-list">
-    <div class="table-list">
-      <table>
-        <thead>
-        <tr>
-          <th i18n="@@logementId">Property ID</th>
-          <th i18n="@@logementName">Property Name</th>
-          <th i18n="@@logementType">Property Type</th>
-          <th i18n="@@logementAddress">Address</th>
-          <th i18n="@@logementUnits">Number of Units</th>
-          <th i18n="@@logementOwner">Owner/Manager</th>
-          <th i18n="@@logementAmenities">Amenities</th>
-          <th i18n="@@logementMaintenanceContact">Maintenance Contact</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngIf="logementList.length === 0">
-          <td colspan="8">
-            <h3 i18n="@@noLogementsFound">No properties found</h3>
-          </td>
-        </tr>
-        <tr *ngFor="let logement of logementList"
-            (click)="toggleLogementDetails(logement.id);" [class.selected-row]="logement === selectedLogement">
-          <td>{{ logement.id }}</td>
-          <td>{{ logement.name }}</td>
-          <td>{{ logement.type }}</td>
-          <td>{{ logement.address }}</td>
-          <td>{{ logement.numberOfUnits }}</td>
-          <td>{{ logement.owner.name }}</td>
-          <td>{{ logement.amenities }}</td>
-          <td>{{ logement.maintenanceContact }}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="table-detail">
-      <table class="" *ngIf="showDetails">
-        <tbody>
-        <tr>
-          <td i18n>Property ID:</td>
-          <td>{{ selectedLogement.id }}</td>
-        </tr>
-        <tr>
-          <td i18n>Property Name:</td>
-          <td>{{ selectedLogement.name }}</td>
-        </tr>
-        <tr>
-          <td i18n>Property Type:</td>
-          <td>{{ selectedLogement.type }}</td>
-        </tr>
-        <tr>
-          <td i18n>Address:</td>
-          <td>{{ selectedLogement.address }}</td>
-        </tr>
-        <tr>
-          <td i18n>Number of Units:</td>
-          <td>{{ selectedLogement.numberOfUnits }}</td>
-        </tr>
-        <tr>
-          <td i18n>Owner/Manager:</td>
-          <td>{{ selectedLogement.owner.name }}</td>
-        </tr>
-        <tr>
-          <td i18n>Amenities:</td>
-          <td>{{ selectedLogement.amenities }}</td>
-        </tr>
-        <tr>
-          <td i18n>Maintenance Contact:</td>
-          <td>{{ selectedLogement.maintenanceContact }}</td>
-        </tr>
-        <tr>
-          <td i18n>Actions:</td>
-          <td>
-            <a href="/logement/edit/{{selectedLogement.id}}" class="success btn-action"><i class="material-icons-sharp">edit</i></a>
-            <button [swal]="deleteSwal" (confirm)="deleteLogement(selectedLogement.id)" class="danger btn-action btn-delete">
-              <i class="material-icons-sharp">delete</i>
-            </button>
-            <swal #deleteSwal title="Delete {{ selectedLogement.name }}?" [showCancelButton]="true" icon="question"></swal>
-            <a href="/logement/view/{{selectedLogement.id}}" class="warning btn-action"><i class="material-icons-sharp">visibility</i></a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item">Property</li>
+    <li class="breadcrumb-item active" aria-current="page">List</li>
+  </ol>
+</nav>
 
+<div class="row">
+  <!-- Property List Table (Large Screens: col-9, Mobile: col-12) -->
+  <div [ngClass]="showDetails ? 'col-lg-9 col-12' : 'col-lg-12 col-12'" class="mb-sm-2">
+    <div class="card">
+      <div class="card-body">
+        <form class="form-inline float-right mb-2">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" i18n>Search</button>
+        </form>
+        <table class="table">
+          <thead>
+          <tr>
+            <th i18n="@@logementId">Property ID</th>
+            <th i18n="@@logementName">Property Name</th>
+            <th i18n="@@logementType">Property Type</th>
+            <th i18n="@@logementAddress">Address</th>
+            <th i18n="@@logementUnits">Number of Units</th>
+            <th i18n="@@logementOwner">Owner/Manager</th>
+            <th i18n="@@logementAmenities">Amenities</th>
+            <th i18n="@@logementMaintenanceContact">Maintenance Contact</th>
+            <th *ngIf="!showDetails">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngIf="logementList.length === 0">
+            <td colspan="8">
+              <h3 i18n="@@noLogementsFound" class="text-center">No properties found</h3>
+            </td>
+          </tr>
+          <tr *ngFor="let logement of logementList" (click)="toggleLogementDetails(logement.id);"
+              [class.selected-row]="logement === selectedLogement">
+            <td>{{ logement.id }}</td>
+            <td>{{ logement.name }}</td>
+            <td>{{ logement.type }}</td>
+            <td>{{ logement.address }}</td>
+            <td>{{ logement.numberOfUnits }}</td>
+            <td>{{ logement.owner.name }}</td>
+            <td>{{ logement.amenities }}</td>
+            <td>{{ logement.maintenanceContact }}</td>
+            <td *ngIf="!showDetails">
+              <a href="/logement/edit/{{logement.id}}" class="btn btn-outline-info rounded-circle mx-1">
+                <i class="fa fa-edit"></i>
+              </a>
+              <button [swal]="deleteSwal" (confirm)="deleteLogement(logement.id)"
+                      class="btn btn-outline-danger rounded-circle mx-1">
+                <i class="fa fa-trash"></i>
+              </button>
+              <a href="/logement/view/{{logement.id}}" class="btn btn-outline-info rounded-circle mx-1">
+                <i class="fa fa-eye"></i>
+              </a>
+              <swal #deleteSwal title="Delete {{ logement.name }}?" [showCancelButton]="true" icon="question"></swal>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <nav aria-label="Page navigation example" class="float-right" *ngIf="logementList.length > 0">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property Details Table (Large Screens: Hidden, Mobile: col-9) -->
+  <div class="col-lg-3 col-sm-12 pt-sm-1" *ngIf="showDetails">
+    <div class="card">
+      <div class="card-body">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" i18n>Property Details</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>Property ID:</strong>
+                  <span>{{ selectedLogement.id }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>Property Name:</strong>
+                  <span>{{ selectedLogement.name }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>Property Type:</strong>
+                  <span>{{ selectedLogement.type }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>Address:</strong>
+                  <span>{{ selectedLogement.address }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>Number of Units:</strong>
+                  <span>{{ selectedLogement.numberOfUnits }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>Owner/Manager:</strong>
+                  <span>{{ selectedLogement.owner.name }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>Amenities:</strong>
+                  <span>{{ selectedLogement.amenities }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>Maintenance Contact:</strong>
+                  <span>{{ selectedLogement.maintenanceContact }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n>Actions:</strong>
+                  <span>
+                    <a href="/logement/edit/{{selectedLogement.id}}" class="btn btn-outline-info rounded-circle mx-2">
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <button [swal]="deleteSwal" (confirm)="deleteLogement(selectedLogement.id)"
+                            class="btn btn-outline-danger rounded-circle mx-2">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                    <swal #deleteSwal title="Delete {{ selectedLogement.name }}?" [showCancelButton]="true" icon="question"></swal>
+                    <a href="/logement/view/{{selectedLogement.id}}" class="btn btn-outline-info rounded-circle mx-2">
+                      <i class="fa fa-eye"></i>
+                    </a>
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

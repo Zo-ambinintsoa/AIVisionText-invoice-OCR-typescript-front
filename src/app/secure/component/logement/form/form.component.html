@@ -1,69 +1,56 @@
-<div class="container-form">
-  <div class="title" i18n="@@loginTitle">Property Details</div>
-  <form (ngSubmit)="onSubmit()" [formGroup]="propertyForm">
-    <div class="user-detail">
-      <!-- Property Name -->
-      <div class="input-box">
-        <span class="details" i18n="@@nameLabel">Name</span>
-        <input type="text" placeholder="Enter property name" formControlName="name" />
-        <div class="error-message" *ngIf="propertyForm.get('name')?.invalid && propertyForm.get('name')?.touched">
+<div class="card">
+  <div class="card-header" i18n="@@loginTitle">Property Details</div>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" [formGroup]="propertyForm">
+      <div class="form-group">
+        <label for="name" i18n="@@nameLabel">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter property name" formControlName="name">
+        <div class="text-danger" *ngIf="propertyForm.get('name')?.invalid && propertyForm.get('name')?.touched">
           Name is required.
         </div>
       </div>
 
-      <!-- Property Type -->
-      <div class="input-box">
-        <span class="details" i18n="@@typeLabel">Type</span>
-        <input type="text" placeholder="Enter property type" formControlName="type" />
-        <div class="error-message" *ngIf="propertyForm.get('type')?.invalid && propertyForm.get('type')?.touched">
+      <div class="form-group">
+        <label for="type" i18n="@@typeLabel">Type</label>
+        <input type="text" class="form-control" id="type" placeholder="Enter property type" formControlName="type">
+        <div class="text-danger" *ngIf="propertyForm.get('type')?.invalid && propertyForm.get('type')?.touched">
           Type is required.
         </div>
       </div>
 
-      <!-- Property Address -->
-      <div class="input-box">
-        <span class="details" i18n="@@addressLabel">Address</span>
-        <input type="text" placeholder="Enter property address" formControlName="address" />
-        <div class="error-message" *ngIf="propertyForm.get('address')?.invalid && propertyForm.get('address')?.touched">
+      <div class="form-group">
+        <label for="address" i18n="@@addressLabel">Address</label>
+        <input type="text" class="form-control" id="address" placeholder="Enter property address" formControlName="address">
+        <div class="text-danger" *ngIf="propertyForm.get('address')?.invalid && propertyForm.get('address')?.touched">
           Address is required.
         </div>
       </div>
 
-      <!-- Number of Units -->
-      <div class="input-box">
-        <span class="details" i18n="@@numberOfUnitsLabel">Number of Units</span>
-        <input type="number" placeholder="Enter number of units" formControlName="numberOfUnits" />
-        <div class="error-message" *ngIf="propertyForm.get('numberOfUnits')?.invalid && propertyForm.get('numberOfUnits')?.touched">
+      <div class="form-group">
+        <label for="numberOfUnits" i18n="@@numberOfUnitsLabel">Number of Units</label>
+        <input type="number" class="form-control" id="numberOfUnits" placeholder="Enter number of units" formControlName="numberOfUnits">
+        <div class="text-danger" *ngIf="propertyForm.get('numberOfUnits')?.invalid && propertyForm.get('numberOfUnits')?.touched">
           Number of Units is required.
         </div>
       </div>
-
-      <!-- Owner Input with Autocomplete -->
-      <div class="input-box">
-        <span class="details" i18n="@@ownerLabel">Owner</span>
-        <input
-          type="text"
-          placeholder="Search for an owner"
-          formControlName="owner"
-          (input)="onOwnerInput()"
-        />
+      <div class="form-group text-center">
+        <label for="googleMap" i18n="@@googleMapLabel">Map</label>
+          <google-map [options]="mapOptions" class="text-center" style="width: auto; height: 400px;"></google-map>
+      </div>
+      <div class="form-group">
+        <label for="owner" i18n="@@ownerLabel">Owner</label>
+        <input type="text" class="form-control" id="owner" placeholder="Search for an owner" formControlName="owner" (input)="onOwnerInput()">
         <div class="autocomplete-list" *ngIf="showAutocomplete">
-          <div
-            class="autocomplete-item"
-            *ngFor="let owner of owners"
-            (click)="selectOwner(owner)"
-          >
+          <div class="autocomplete-item" *ngFor="let owner of owners" (click)="selectOwner(owner)">
             {{ owner.name }}
           </div>
         </div>
-        <div class="error-message" *ngIf="propertyForm.get('owner')?.invalid && propertyForm.get('owner')?.touched">
+        <div class="text-danger" *ngIf="propertyForm.get('owner')?.invalid && propertyForm.get('owner')?.touched">
           Owner is required.
         </div>
       </div>
-    </div>
 
-    <!-- Submit Button -->
-    <button type="submit" class="register-button" [disabled]="propertyForm.invalid"><div i18n="@@loginButton">Submit</div>
-    </button>
-  </form>
+      <button type="submit" class="btn btn-primary" [disabled]="propertyForm.invalid" i18n="@@loginButton">Submit</button>
+    </form>
+  </div>
 </div>

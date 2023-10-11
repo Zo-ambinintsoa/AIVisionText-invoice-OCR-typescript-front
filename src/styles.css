@@ -222,7 +222,7 @@ aside .sidebar .message-count{
 }
 
 main{
-  margin-top: 1.4rem;
+  margin-top: 5rem;
 }
 
 main .analyse{
@@ -364,39 +364,8 @@ main .new-users .user-list .user img{
  .table-list{
   margin-top: 1.3rem;
 }
-
-.table-list h2{
-  margin-bottom: 0.8rem;
-}
-
 .table-list table{
-  background-color: var(--color-white);
-  width: 100%;
-  padding: var(--card-padding);
   text-align: center;
-  box-shadow: var(--box-shadow);
-  border-radius: var(--card-border-radius);
-  transition: all 0.3s ease;
-}
-
-.table-detail table{
-  background-color: var(--color-white);
-  width: 40%;
-  padding: var(--card-padding);
-  text-align: center;
-  box-shadow: var(--box-shadow);
-  border-radius: var(--card-border-radius);
-  transition: all 0.3s ease;
-}
-
-.table-list table:hover{
-  box-shadow: none;
-}
-
-table tbody tr:nth-child(even) {
-  background-color: var(--color-light);
-  border-radius: var(--card-border-radius);
-  border-color: var(--color-white);
 }
 
 table tbody tr:hover {
@@ -406,49 +375,11 @@ table tbody tr:hover {
   transition: background-color 0.3s, transform 0.3s;
 }
 
-table {
-margin: 2rem;
-}
-
 table tbody tr:active {
   background-color: var(--color-white);
   cursor: pointer;
   transform: scale(1.03);
   transition: background-color 0.3s, transform 0.3s;
-}
-
-table tbody td {
-  height: 2.8rem;
-  border-bottom: 1px solid var(--color-light);
-  color: var(--color-dark-variant);
-}
-
-
-table tbody td{
-  height: 2.8rem;
-  border-bottom: 1px solid var(--color-light);
-  color: var(--color-dark-variant);
-}
-
-
-table tbody tr:last-child td{
-  border: none;
-}
-
-
-table thead {
-  margin-bottom: 15px;
-}
-
-
-table.striped-table tbody tr:nth-child(odd) {
-  background-color: rgba(132, 139, 200, 0.18);
-}
-
- table tbody td {
-  height: 2.8rem;
-  border-bottom: 1px solid var(--color-light);
-  color: var(--color-dark-variant);
 }
 
 .t-list {

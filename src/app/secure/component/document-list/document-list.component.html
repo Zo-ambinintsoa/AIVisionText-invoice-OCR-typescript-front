@@ -1,78 +1,133 @@
-<h1 i18n="@@documentsListHeader">Lists of Documents</h1>
-    <div class="t-list">
-    <div class="table-list">
-      <br>
-      <hr>
-      <br>
-      <table>
-        <thead>
-        <tr>
-          <th i18n="@@userId">User ID</th>
-          <th i18n="@@fileName">File Name</th>
-          <th i18n="@@fileType">File Type</th>
-          <th i18n="@@uploadDate">Upload Date</th>
-          <th i18n="@@documentUrl">Document URL</th>
-          <th i18n="@@category">Category</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngIf="documentList.length === 0">
-          <td colspan="6">
-            <h3 i18n="@@noDocumentsFound">No documents found</h3>
-          </td>
-        </tr>
-        <tr *ngFor="let documents of documentList"
-          (click)="onRowClick(documents.id); toggleButton(documents.id);" [class.selected-row]="documents === selectedDocument">
-          <td>{{ documents.userId }}</td>
-          <td>{{ documents.fileName }}</td>
-          <td>{{ documents.fileType }}</td>
-          <td>{{ documents.uploadDate }}</td>
-          <td>{{ documents.documentUrl }}</td>
-          <td>{{ documents.category }}</td>
-        </tr>
-        </tbody>
-      </table>
-      <a href="#" *ngIf="documentList.length > 0" i18n="@@showAll">Show All</a>
-    </div>
-      <div class="table-detail">
-        <table class="" *ngIf="showDetails">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item">Document</li>
+    <li class="breadcrumb-item active" aria-current="page">List</li>
+  </ol>
+</nav>
+<div class="row">
+  <!-- Document List Table (Large Screens: col-9, Mobile: col-12) -->
+  <div [ngClass]="!showDetails ? 'col-lg-12 col-12' : 'col-lg-9 col-12'" class="mb-2" *ngIf="documentList.length > 0">
+    <div class="card">
+      <div class="card-body">
+        <form class="form-inline float-right mb-2">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" i18n>Search</button>
+        </form>
+        <table class="table">
+          <thead>
+          <tr>
+            <th i18n="@@userId">User ID</th>
+            <th i18n="@@fileName">File Name</th>
+            <th i18n="@@fileType">File Type</th>
+            <th i18n="@@uploadDate">Upload Date</th>
+            <th i18n="@@documentUrl">Document URL</th>
+            <th i18n="@@category">Category</th>
+            <th *ngIf="!showDetails" i18n="@@actions">Actions</th>
+          </tr>
+          </thead>
           <tbody>
-          <tr>
-            <td>User Id:</td>
-            <td>{{ selectedDocument.userId }}</td>
+          <tr *ngIf="documentList.length === 0">
+            <td colspan="7">
+              <h3 i18n="@@noDocumentsFound" class="text-center">No documents found</h3>
+            </td>
           </tr>
-          <tr>
-            <td>File Name:</td>
-            <td>{{ selectedDocument.fileName }}</td>
-          </tr>
-          <tr>
-            <td>File Type:</td>
-            <td>{{ selectedDocument.fileType }}</td>
-          </tr>
-          <tr>
-            <td>Upload Date:</td>
-            <td>{{ selectedDocument.uploadDate }}</td>
-          </tr>
-          <tr>
-            <td>Document URL:</td>
-            <td>{{ selectedDocument.documentUrl }}</td>
-          </tr>
-          <tr>
-            <td>Category:</td>
-            <td>{{ selectedDocument.category }}</td>
-          </tr>
-          <tr>
-            <td>Category:</td>
-            <td>
-              <a href="/document/edit/{{selectedDocument.id}}" class="success btn-action"><i class="material-icons-sharp">edit</i></a>
-              <button [swal]="deleteSwal" (confirm)="deleteDocument(selectedDocument.id)" class="danger btn-action btn-delete">
-                <i class="material-icons-sharp">delete</i>
+          <tr *ngFor="let document of documentList"
+              (click)="onRowClick(document.id); toggleButton(document.id);" [class.selected-row]="document === selectedDocument">
+            <td>{{ document.userId }}</td>
+            <td>{{ document.fileName }}</td>
+            <td>{{ document.fileType }}</td>
+            <td>{{ document.uploadDate }}</td>
+            <td>{{ document.documentUrl }}</td>
+            <td>{{ document.category }}</td>
+            <td *ngIf="!showDetails">
+              <a href="/document/edit/{{document.id}}" class="btn btn-outline-info rounded-circle mx-2">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="/document/view/{{document.id}}" class="btn btn-outline-info rounded-circle mx-2">
+                <i class="fa fa-eye"></i>
+              </a>
+              <button [swal]="deleteSwal" (confirm)="deleteDocument(document.id)" class="btn btn-outline-danger rounded-circle mx-2">
+                <i class="fa fa-trash"></i>
               </button>
-              <swal #deleteSwal title="Delete {{ selectedDocument.fileName }}?" [showCancelButton]="true" icon="question"></swal>
-              <a href="/document/view/{{selectedDocument.id}}" class="warning btn-action"><i class="material-icons-sharp">visibility</i></a>
+              <swal #deleteSwal title="Delete {{ document.fileName }}?" [showCancelButton]="true" icon="question"></swal>
+            </td>
           </tr>
           </tbody>
         </table>
+        <nav aria-label="Page navigation example" class="float-right" *ngIf="documentList.length > 0">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
+  </div>
 
+  <!-- Document Details Table (Large Screens: Hidden, Mobile: col-9) -->
+  <div class="col-lg-3 col-12 mt-2" *ngIf="showDetails">
+    <div class="card">
+      <div class="card-body">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" i18n="@@documentDetails">Document Details</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n="@@userId">User ID:</strong>
+                  <span>{{ selectedDocument.userId }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n="@@fileName">File Name:</strong>
+                  <span>{{ selectedDocument.fileName }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n="@@fileType">File Type:</strong>
+                  <span>{{ selectedDocument.fileType }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n="@@uploadDate">Upload Date:</strong>
+                  <span>{{ selectedDocument.uploadDate }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n="@@documentUrl">Document URL:</strong>
+                  <span>{{ selectedDocument.documentUrl }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n="@@category">Category:</strong>
+                  <span>{{ selectedDocument.category }}</span>
+                </div>
+              </li>
+            </ul>
+            <div class="card-footer d-flex justify-content-center">
+              <a href="/document/edit/{{selectedDocument.id}}" class="btn btn-outline-info rounded-circle mx-2">
+                <i class="fa fa-edit"></i>
+              </a>
+              <button [swal]="deleteSwal" (confirm)="deleteDocument(selectedDocument.id)" class="btn btn-outline-danger rounded-circle mx-2">
+                <i class="fa fa-trash"></i>
+              </button>
+              <a href="/document/view/{{selectedDocument.id}}" class="btn btn-outline-info rounded-circle mx-2">
+                <i class="fa fa-eye"></i>
+              </a>
+              <swal #deleteSwal title="Delete {{ selectedDocument.fileName }}?" [showCancelButton]="true" icon="question"></swal>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

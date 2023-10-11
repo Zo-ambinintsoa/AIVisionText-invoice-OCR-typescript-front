@@ -23,6 +23,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NgxEditorModule} from "ngx-editor";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import {FooterModule} from "../components/layout/footer/footer.module";
+import {GoogleMapsModule} from "@angular/google-maps";
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import {FooterModule} from "../components/layout/footer/footer.module";
     NgxEditorModule,
     SweetAlert2Module,
     FooterModule,
+    GoogleMapsModule,
   ]
 })
 export class SecureModule { }
