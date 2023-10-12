@@ -2,11 +2,9 @@
   <div class="nav">
     <div class="profile">
       <div class="info">
-        <p>Hey, <b>Reza</b></p>
-        <small class="text-muted">Admin</small>
-      </div>
-      <div class="profile-photo">
-<!--        <img src="...">-->
+        <p>Hey, <b>{{ userInfo.username }}</b></p>
+        <small class="text-muted">{{ userInfo.role.name }}</small>
+        <a class="" (click)="logout()" href="#">Logout</a>
       </div>
     </div>
   </div>

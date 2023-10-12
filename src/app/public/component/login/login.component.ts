@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
+import {Router} from "@angular/router";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -11,8 +13,9 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent {
   title = 'Login';
   loginForm: FormGroup;
+  errorMessage!: string;
 
-  constructor(private titleService: Title, private formBuilder: FormBuilder, private http: HttpClient) {
+  constructor(private titleService: Title, private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) {
     this.titleService.setTitle(`PRM - ${(this.title)}`);
 
     // Initialize the login form with validation
@@ -26,17 +29,18 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       // Send a POST request to the server with the form data
       const formData = this.loginForm.value;
-      this.http.post('http://localhost:3000/api/auth/login', formData)
-        .subscribe(
-          (response) => {
-            // Handle successful login response here
-            console.log('Login successful:', response);
-          },
-          (error) => {
-            // Handle login error here
-            console.error('Login error:', error);
-          }
-        );
+      this.authService.login(
+        formData.email,
+        formData.password
+      ).subscribe(
+        () => {
+          this.router.navigate(['/document/list'])
+        },
+        (error) => {
+          console.log(error)
+          this.errorMessage = error.error.message; // Set the error message from the server
+        }
+      );
     }
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {DocumentService} from "../../../services/document.service";
+
 
 @Component({
   selector: 'app-document-list',
@@ -10,14 +11,14 @@ export class DocumentListComponent implements OnInit {
   documentList: any[] = [];
   showDetails: boolean = false;
   selectedDocument: any = {};
-  selectedBefore!:number;
+  selectedBefore!: number;
 
   selectedDocumentId: number | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private documentService: DocumentService) {}
 
   ngOnInit() {
-    this.http.get<any[]>('http://localhost:3000/documents').subscribe(data => {
+    this.documentService.listDocuments().subscribe(data => {
       this.documentList = data;
     });
   }
@@ -29,7 +30,7 @@ export class DocumentListComponent implements OnInit {
       this.selectedBefore = documentId;
     } else {
       // If details are not shown, fetch document details and show them
-      this.http.get(`http://localhost:3000/documents/${documentId}`).subscribe(
+      this.documentService.findOneDocument(documentId).subscribe(
         (documentDetails: any) => {
           this.selectedDocument = documentDetails;
           this.selectedBefore = documentId;
@@ -42,8 +43,6 @@ export class DocumentListComponent implements OnInit {
     }
   }
 
-
-
   toggleButton(documentId: number) {
     if (this.selectedDocumentId === documentId) {
       this.selectedDocumentId = null; // Close the button if it's already open
@@ -53,8 +52,7 @@ export class DocumentListComponent implements OnInit {
   }
 
   deleteDocument(id: number) {
-    const apiUrl = `http://localhost:3000/documents/${id}`; // Replace with your JSON server URL
-    this.http.delete(apiUrl).subscribe(
+    this.documentService.deleteDocument(+id).subscribe(
       () => {
         // Success: Document deleted, you can handle this as needed (e.g., update documentList)
         console.log(`Document with ID ${id} deleted successfully.`);

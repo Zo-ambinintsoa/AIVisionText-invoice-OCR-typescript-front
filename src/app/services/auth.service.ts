@@ -9,7 +9,6 @@ export class AuthService {
   private baseUrl = 'http://localhost:3000/api';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    withCredentials: true // Set this to true for cookie-based authentication
   };
 
   constructor(private http: HttpClient) { }

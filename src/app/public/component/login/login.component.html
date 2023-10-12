@@ -1,6 +1,7 @@
 <div class="body">
   <div class="container-form">
     <div class="title" i18n="@@loginTitle">Login</div>
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
     <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
       <div class="user-detail">
         <!-- Email Input -->

@@ -438,14 +438,15 @@ table tbody tr:active {
   box-shadow: var(--box-shadow);
 }
 
-.right-section{
-  margin-top: 1.4rem;
+.right-section {
+  margin-top: .4rem;
+  margin-right: .8rem;
 }
 
 .right-section .nav{
   display: flex;
   justify-content: flex-end;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .right-section .nav button{
@@ -725,7 +726,7 @@ table tbody tr:active {
 
   .right-section{
     width: 94%;
-    margin: 0 auto 4rem;
+    margin: 0 auto .4rem;
   }
 
   .right-section .nav{
@@ -758,7 +759,7 @@ table tbody tr:active {
     cursor: pointer;
     color: var(--color-dark);
     position: absolute;
-    left: 1rem;
+    left: .4rem;
   }
 
   .right-section .nav button span{

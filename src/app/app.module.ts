@@ -9,6 +9,9 @@ import { NgChartsModule } from 'ng2-charts';
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FooterModule} from "./components/layout/footer/footer.module";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {CredentialInterceptor} from "./interceptor/credential.interceptor";
+import {AuthGuard} from "./guard/auth.guard";
 
 @NgModule({
   declarations: [
@@ -24,7 +27,14 @@ import {FooterModule} from "./components/layout/footer/footer.module";
     NgbModule,
     FooterModule,
   ],
-  providers: [],
+  providers: [
+    {
+    provide : HTTP_INTERCEPTORS,
+      useClass: CredentialInterceptor,
+      multi: true,
+    },
+    AuthGuard,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

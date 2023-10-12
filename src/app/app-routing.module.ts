@@ -15,9 +15,12 @@ import {CategoryManagementComponent} from "./secure/component/category-managemen
 import {AnalyticsComponent} from "./secure/component/analytics/analytics.component";
 import {NotFoundComponent} from "./public/component/not-found/not-found.component";
 import {ApartmentComponent} from "./secure/component/apartment/apartment.component";
+import {AuthGuard} from "./guard/auth.guard";
 
 const routes: Routes = [
-  { path: '', component: SecureComponent, children : [
+  { path: '', component: SecureComponent,  canActivateChild: [AuthGuard],
+    children : [
+      { path: '', component: LogementListComponent },
       { path: 'document/list', component: DocumentListComponent },
       { path: 'document/upload', component: DocumentUploadComponent },
       { path: 'history', component: HistoryComponent },

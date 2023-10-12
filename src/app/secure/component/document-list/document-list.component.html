@@ -41,13 +41,13 @@
             <td>{{ document.documentUrl }}</td>
             <td>{{ document.category }}</td>
             <td *ngIf="!showDetails">
-              <a href="/document/edit/{{document.id}}" class="btn btn-outline-info rounded-circle mx-2">
+              <a href="/document/edit/{{document.id}}" class="btn btn-outline-info rounded-circle mx-lg-1">
                 <i class="fa fa-edit"></i>
               </a>
-              <a href="/document/view/{{document.id}}" class="btn btn-outline-info rounded-circle mx-2">
+              <a href="/document/view/{{document.id}}" class="btn btn-outline-info rounded-circle mx-lg-1">
                 <i class="fa fa-eye"></i>
               </a>
-              <button [swal]="deleteSwal" (confirm)="deleteDocument(document.id)" class="btn btn-outline-danger rounded-circle mx-2">
+              <button [swal]="deleteSwal" (confirm)="deleteDocument(document.id)" class="btn btn-outline-danger rounded-circle mx-lg-1">
                 <i class="fa fa-trash"></i>
               </button>
               <swal #deleteSwal title="Delete {{ document.fileName }}?" [showCancelButton]="true" icon="question"></swal>
@@ -114,13 +114,13 @@
               </li>
             </ul>
             <div class="card-footer d-flex justify-content-center">
-              <a href="/document/edit/{{selectedDocument.id}}" class="btn btn-outline-info rounded-circle mx-2">
+              <a href="/document/edit/{{selectedDocument.id}}" class="btn btn-outline-info rounded-circle mx-1">
                 <i class="fa fa-edit"></i>
               </a>
-              <button [swal]="deleteSwal" (confirm)="deleteDocument(selectedDocument.id)" class="btn btn-outline-danger rounded-circle mx-2">
+              <button [swal]="deleteSwal" (confirm)="deleteDocument(selectedDocument.id)" class="btn btn-outline-danger rounded-circle mx-1">
                 <i class="fa fa-trash"></i>
               </button>
-              <a href="/document/view/{{selectedDocument.id}}" class="btn btn-outline-info rounded-circle mx-2">
+              <a href="/document/view/{{selectedDocument.id}}" class="btn btn-outline-info rounded-circle mx-1">
                 <i class="fa fa-eye"></i>
               </a>
               <swal #deleteSwal title="Delete {{ selectedDocument.fileName }}?" [showCancelButton]="true" icon="question"></swal>
