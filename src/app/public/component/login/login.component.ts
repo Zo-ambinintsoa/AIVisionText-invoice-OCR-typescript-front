@@ -26,7 +26,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       // Send a POST request to the server with the form data
       const formData = this.loginForm.value;
-      this.http.post('http://localhost:3000/login', formData)
+      this.http.post('http://localhost:3000/api/auth/login', formData)
         .subscribe(
           (response) => {
             // Handle successful login response here

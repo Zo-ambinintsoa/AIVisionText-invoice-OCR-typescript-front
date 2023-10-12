@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import {Router} from "@angular/router";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -10,8 +12,8 @@ import { Title } from '@angular/platform-browser';
 export class RegisterComponent {
   title = 'Register';
   registerForm: FormGroup;
-
-  constructor(private titleService: Title, private formBuilder: FormBuilder) {
+  errorMessage!: string;
+  constructor(private titleService: Title, private formBuilder: FormBuilder , private router : Router, private authService : AuthService ) {
     this.titleService.setTitle(`PRM - ${(this.title)}`);
 
     // Initialize the registration form with validation
@@ -50,18 +52,20 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       // Send a POST request to the server with the form data
       const formData = this.registerForm.value;
-      // Replace the following with actual API endpoint
-      // this.http.post('http://localhost:3000/register', formData)
-      //   .subscribe(
-      //     (response) => {
-      //       // Handle successful registration response here
-      //       console.log('Registration successful:', response);
-      //     },
-      //     (error) => {
-      //       // Handle registration error here
-      //       console.error('Registration error:', error);
-      //     }
-      //   );
+      this.authService.register(
+        formData.fullName,
+        formData.username,
+        formData.email,
+        formData.password
+      ).subscribe(
+        () => {
+         this.router.navigate(['/login'])
+        },
+        (error) => {
+          console.log(error)
+          this.errorMessage = error.error.message; // Set the error message from the server
+        }
+      );
     }
   }
 }
