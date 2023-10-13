@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,8 +14,13 @@ export class DocumentService {
 
   constructor(private http: HttpClient) { }
 
-  listDocuments(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/documents`, this.httpOptions);
+  listDocuments(keyword: string, page: number, take: number): Observable<any> {
+    const params = new HttpParams()
+      .set('keyword', keyword)
+      .set('page', page.toString())
+      .set('take', take.toString());
+
+    return this.http.get(`${this.baseUrl}/documents`, { params });
   }
 
   findOneDocument(id: number): Observable<any> {

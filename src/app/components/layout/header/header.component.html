@@ -3,7 +3,7 @@
     <div class="profile">
       <div class="info">
         <p>Hey, <b>{{ userInfo.username }}</b></p>
-        <small class="text-muted">{{ userInfo.role.name }}</small>
+        <small class="text-muted">{{ userInfo.role?.name }}</small>
         <a class="" (click)="logout()" href="#">Logout</a>
       </div>
     </div>

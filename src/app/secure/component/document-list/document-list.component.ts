@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DocumentService} from "../../../services/document.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 
 @Component({
@@ -12,15 +13,41 @@ export class DocumentListComponent implements OnInit {
   showDetails: boolean = false;
   selectedDocument: any = {};
   selectedBefore!: number;
+  currentPage: number = 1;
+  perPage: number = 10;
+  searchForm!: FormGroup;
 
   selectedDocumentId: number | null = null;
 
-  constructor(private documentService: DocumentService) {}
+  constructor(private documentService: DocumentService, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.documentService.listDocuments().subscribe(data => {
-      this.documentList = data;
+    this.searchForm = this.formBuilder.group({
+      searchKeyword: [''], // You can provide an initial value here
     });
+    this.searchDocuments();
+  }
+
+  searchDocuments() {
+    const searchKeyword = this.searchForm.get('searchKeyword')?.value;
+    this.documentService.listDocuments(searchKeyword, this.currentPage, this.perPage)
+      .subscribe((data: any) => {
+        this.documentList = data.documents;
+        this.currentPage = data.currentPage;
+        this.perPage = data.perPage;
+      });
+  }
+
+
+
+  changePage(newPage: number) {
+    this.currentPage = newPage;
+    this.searchDocuments();
+  }
+
+  getPages(): number[] {
+    const totalPages = Math.ceil(this.documentList.length / this.perPage);
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
 
   onRowClick(documentId: number): void {

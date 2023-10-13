@@ -10,8 +10,8 @@
   <div [ngClass]="!showDetails ? 'col-lg-12 col-12' : 'col-lg-9 col-12'" class="mb-2">
     <div class="card">
       <div class="card-body">
-        <form class="form-inline float-right mb-2">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline float-right mb-2" [formGroup]="searchForm" (ngSubmit)="searchDocuments()">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" formControlName="searchKeyword">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" i18n>Search</button>
         </form>
         <table class="table">
@@ -32,36 +32,40 @@
               <h3 i18n="@@noDocumentsFound" class="text-center">No documents found</h3>
             </td>
           </tr>
-          <tr *ngFor="let document of documentList"
-              (click)="onRowClick(document.id); toggleButton(document.id);" [class.selected-row]="document === selectedDocument">
-            <td>{{ document.userId }}</td>
-            <td>{{ document.fileName }}</td>
-            <td>{{ document.fileType }}</td>
-            <td>{{ document.uploadDate }}</td>
-            <td>{{ document.documentUrl }}</td>
-            <td>{{ document.category }}</td>
+          <tr *ngFor="let documentOn of documentList"
+              (click)="onRowClick(documentOn.id); toggleButton(documentOn.id);" [class.selected-row]="documentOn === selectedDocument">
+            <td>{{ documentOn.userId }}</td>
+            <td>{{ documentOn.fileName }}</td>
+            <td>{{ documentOn.fileType }}</td>
+            <td>{{ documentOn.uploadDate }}</td>
+            <td>{{ documentOn.documentUrl }}</td>
+            <td>{{ documentOn.category.name }}</td>
             <td *ngIf="!showDetails">
-              <a href="/document/edit/{{document.id}}" class="btn btn-outline-info rounded-circle mx-lg-1">
+              <a href="/document/edit/{{documentOn.id}}" class="btn btn-outline-info rounded-circle mx-lg-1">
                 <i class="fa fa-edit"></i>
               </a>
-              <a href="/document/view/{{document.id}}" class="btn btn-outline-info rounded-circle mx-lg-1">
+              <a href="/document/view/{{documentOn.id}}" class="btn btn-outline-info rounded-circle mx-lg-1">
                 <i class="fa fa-eye"></i>
               </a>
-              <button [swal]="deleteSwal" (confirm)="deleteDocument(document.id)" class="btn btn-outline-danger rounded-circle mx-lg-1">
+              <button [swal]="deleteSwal" (confirm)="deleteDocument(documentOn.id)" class="btn btn-outline-danger rounded-circle mx-lg-1">
                 <i class="fa fa-trash"></i>
               </button>
-              <swal #deleteSwal title="Delete {{ document.fileName }}?" [showCancelButton]="true" icon="question"></swal>
+              <swal #deleteSwal title="Delete {{ documentOn.fileName }}?" [showCancelButton]="true" icon="question"></swal>
             </td>
           </tr>
           </tbody>
         </table>
         <nav aria-label="Page navigation example" class="float-right" *ngIf="documentList.length > 0">
           <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <li class="page-item" [class.disabled]="currentPage === 1">
+              <a class="page-link" (click)="changePage(currentPage - 1)" href="#">Previous</a>
+            </li>
+            <li class="page-item" *ngFor="let page of getPages()">
+              <a class="page-link" (click)="changePage(page)" [class.active]="currentPage === page" href="#">{{ page }}</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === getPages().length">
+              <a class="page-link" (click)="changePage(currentPage + 1)" href="#">Next</a>
+            </li>
           </ul>
         </nav>
       </div>
