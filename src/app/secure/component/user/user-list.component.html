@@ -36,7 +36,7 @@
             <td>{{ user.id }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.role.roleName }}</td>
+            <td>{{ user?.role.name }}</td>
             <td *ngIf="!showDetails">
               <a href="/user/edit/{{user.id}}" class="btn btn-outline-info rounded-circle mx-1">
                 <i class="fa fa-edit"></i>
@@ -85,7 +85,7 @@
               <li class="list-group-item">
                 <div class="d-flex justify-content-between">
                   <strong i18n>Role:</strong>
-                  <span>{{ selectedUser.role.roleName }}</span>
+                  <span>{{ selectedUser?.role.name }}</span>
                 </div>
               </li>
             </ul>

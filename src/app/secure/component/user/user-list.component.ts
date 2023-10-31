@@ -20,7 +20,8 @@ export class UserListComponent implements OnInit {
 
   // Load the list of users from the JSON server
   loadUsers() {
-    this.http.get<any[]>('http://localhost:3000/users').subscribe(data => {
+    this.http.get<any[]>('http://localhost:3000/api/users').subscribe(data => {
+      console.log(data)
       this.userList = data;
     });
   }
@@ -32,7 +33,7 @@ export class UserListComponent implements OnInit {
       this.showDetails = !this.showDetails;
     } else {
       // If details are not shown, fetch user details and show them
-      this.http.get(`http://localhost:3000/users/${userId}`).subscribe(
+      this.http.get(`http://localhost:3000/api/users/${userId}`).subscribe(
         (userDetails: any) => {
           this.selectedUser = userDetails;
           this.showDetails = true;

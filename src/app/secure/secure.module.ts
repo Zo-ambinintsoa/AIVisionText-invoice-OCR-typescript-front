@@ -24,6 +24,7 @@ import {NgxEditorModule} from "ngx-editor";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import {FooterModule} from "../components/layout/footer/footer.module";
 import {GoogleMapsModule} from "@angular/google-maps";
+import {NgChartsModule} from "ng2-charts";
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import {GoogleMapsModule} from "@angular/google-maps";
     SweetAlert2Module,
     FooterModule,
     GoogleMapsModule,
+    NgChartsModule
   ]
 })
 export class SecureModule { }
