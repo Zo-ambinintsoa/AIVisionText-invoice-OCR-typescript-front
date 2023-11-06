@@ -16,6 +16,8 @@ import {AnalyticsComponent} from "./secure/component/analytics/analytics.compone
 import {NotFoundComponent} from "./public/component/not-found/not-found.component";
 import {ApartmentComponent} from "./secure/component/apartment/apartment.component";
 import {AuthGuard} from "./guard/auth.guard";
+import {ReceiptComponent} from "./secure/component/receipt/receipt.component";
+import {FormReceiptComponent} from "./secure/component/receipt/form/form-receipt.component";
 
 const routes: Routes = [
   { path: '', component: SecureComponent,  canActivateChild: [AuthGuard],
@@ -31,6 +33,8 @@ const routes: Routes = [
       { path: 'categories', component: CategoryManagementComponent },
       { path: 'analytics', component: AnalyticsComponent },
       { path: 'apartment/list', component: ApartmentComponent },
+      { path: 'receipt/list', component: ReceiptComponent },
+      { path: 'receipt/new', component: FormReceiptComponent },
     ] },
   { path: '',
         component: PublicComponent, children: [

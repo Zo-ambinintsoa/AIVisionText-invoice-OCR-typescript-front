@@ -35,12 +35,12 @@
           </tr>
           <tr *ngFor="let documentOn of documentList"
               (click)="onRowClick(documentOn.id); toggleButton(documentOn.id);" [class.selected-row]="documentOn === selectedDocument">
-            <td>{{ documentOn.userId }}</td>
-            <td>{{ documentOn.fileName }}</td>
-            <td>{{ documentOn.fileType }}</td>
-            <td>{{ documentOn.uploadDate }}</td>
-            <td>{{ documentOn.documentUrl }}</td>
-            <td>{{ documentOn.category.name }}</td>
+            <td>{{ documentOn?.userId }}</td>
+            <td>{{ documentOn?.fileName }}</td>
+            <td>{{ documentOn?.fileType }}</td>
+            <td>{{ documentOn?.uploadDate }}</td>
+            <td>{{ documentOn?.documentUrl }}</td>
+            <td>{{ documentOn.category?.name }}</td>
             <td *ngIf="!showDetails">
               <a href="/document/edit/{{documentOn.id}}" class="btn btn-outline-info rounded-circle mx-lg-1">
                 <i class="fa fa-edit"></i>
@@ -84,37 +84,37 @@
               <li class="list-group-item">
                 <div class="d-flex justify-content-between">
                   <strong i18n="@@userId">User ID:</strong>
-                  <span>{{ selectedDocument.userId }}</span>
+                  <span>{{ selectedDocument?.userId }}</span>
                 </div>
               </li>
               <li class="list-group-item">
                 <div class="d-flex justify-content-between">
                   <strong i18n="@@fileName">File Name:</strong>
-                  <span>{{ selectedDocument.fileName }}</span>
+                  <span>{{ selectedDocument?.fileName }}</span>
                 </div>
               </li>
               <li class="list-group-item">
                 <div class="d-flex justify-content-between">
                   <strong i18n="@@fileType">File Type:</strong>
-                  <span>{{ selectedDocument.fileType }}</span>
+                  <span>{{ selectedDocument?.fileType }}</span>
                 </div>
               </li>
               <li class="list-group-item">
                 <div class="d-flex justify-content-between">
                   <strong i18n="@@uploadDate">Upload Date:</strong>
-                  <span>{{ selectedDocument.uploadDate }}</span>
+                  <span>{{ selectedDocument?.uploadDate }}</span>
                 </div>
               </li>
               <li class="list-group-item">
                 <div class="d-flex justify-content-between">
                   <strong i18n="@@documentUrl">Document URL:</strong>
-                  <span>{{ selectedDocument.documentUrl }}</span>
+                  <span>{{ selectedDocument?.documentUrl }}</span>
                 </div>
               </li>
               <li class="list-group-item">
                 <div class="d-flex justify-content-between">
                   <strong i18n="@@category">Category:</strong>
-                  <span>{{ selectedDocument.category }}</span>
+                  <span>{{ selectedDocument?.category }}</span>
                 </div>
               </li>
             </ul>

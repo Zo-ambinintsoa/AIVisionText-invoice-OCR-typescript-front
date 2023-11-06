@@ -25,6 +25,8 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import {FooterModule} from "../components/layout/footer/footer.module";
 import {GoogleMapsModule} from "@angular/google-maps";
 import {NgChartsModule} from "ng2-charts";
+import { ReceiptComponent } from './component/receipt/receipt.component';
+import {FormReceiptComponent} from "./component/receipt/form/form-receipt.component";
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import {NgChartsModule} from "ng2-charts";
     ApartmentFormComponent,
     FormLogmentComponent,
     UserFormComponent,
+    ReceiptComponent,
+    FormReceiptComponent,
 
   ],
   imports: [

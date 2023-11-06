@@ -1,0 +1,137 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" i18n><a href="#">Home</a></li>
+    <li class="breadcrumb-item" i18n>Invoices</li>
+    <li class="breadcrumb-item active" aria-current="page" i18n>New</li>
+  </ol>
+</nav>
+<form #invoiceForm="ngForm">
+  <div class="container-fluid pt-2 mb-5">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header" i18n>Customer Details</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" name="name" id="name"
+                         [ngClass]="{'is-invalid': invoiceForm.submitted && CustName.invalid}"
+                         [(ngModel)]="invoice.customerName" #CustName="ngModel" required>
+                  <div class="text-danger" *ngIf="CustName.invalid && CustName.touched">
+                    Name is required.
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <textarea class="form-control" name="address" id="address" row="3"
+                            [ngClass]="{'is-invalid': invoiceForm.submitted && Address.invalid}"
+                            [(ngModel)]="invoice.address" #Address="ngModel" required></textarea>
+                  <div class="text-danger" *ngIf="Address.invalid && Address.touched">
+                    Address is required.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="email">Email ID</label>
+                  <input type="email" class="form-control" name="email" id="email"
+                          [ngClass]="{'is-invalid': invoiceForm.submitted && email.invalid}" [(ngModel)]="invoice.email" #email="ngModel" required>
+                </div>
+                <div class="form-group">
+                  <label for="contactNo">Contact No.</label>
+                  <input type="number" class="form-control" name="contactNo" id="contactNo"
+                         [ngClass]="{'is-invalid': invoiceForm.submitted && ContactNo.invalid}"
+                         [(ngModel)]="invoice.contactNo" #ContactNo="ngModel" required>
+                  <div class="text-danger" *ngIf="ContactNo.invalid && ContactNo.touched">
+                    Contact No. is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-2">
+          <div class="card-header d-flex justify-content-between">
+            Order Details
+            <button type="button" class="btn btn-secondary" (click)="addProduct()">+</button>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+              <tr>
+                <th width="25%" i18n>Product</th>
+                <th width="25%" i18n>Price</th>
+                <th width="25%" i18n>Quantity</th>
+                <th width="25%" i18n>Amount</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let product of invoice.products; let i=index">
+                <td>
+                  <input type="text" class="form-control" name="productName{{i}}"
+                         [ngClass]="{'is-invalid': invoiceForm.submitted && ProductName.invalid}"
+                         [(ngModel)]="product.name" #ProductName="ngModel" required>
+                  <div class="text-danger" *ngIf="ProductName.invalid && ProductName.touched">
+                    Product name is required.
+                  </div>
+                </td>
+                <td>
+                  <input type="number" class="form-control" name="price{{i}}"
+                         [ngClass]="{'is-invalid': invoiceForm.submitted && ProductPrice.invalid}"
+                         [(ngModel)]="product.price" #ProductPrice="ngModel" required>
+                  <div class="text-danger" *ngIf="ProductPrice.invalid && ProductPrice.touched">
+                    Price is required.
+                  </div>
+                </td>
+                <td>
+                  <input type="number" class="form-control" name="quantity{{i}}"
+                         [ngClass]="{'is-invalid': invoiceForm.submitted && ProductQty.invalid}"
+                         [(ngModel)]="product.qty" #ProductQty="ngModel" required>
+                  <div class="text-danger" *ngIf="ProductQty.invalid && ProductQty.touched">
+                    Quantity is required.
+                  </div>
+                </td>
+                <td>
+                  {{product.price * product.qty || ''}}
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card mt-2">
+          <div class="card-header">Additional Details</div>
+          <div class="card-body">
+            <div class="form-group">
+                            <textarea class="form-control" name="additionalDetails" rows="3"
+                                      [(ngModel)]="invoice.additionalDetails"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-2">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4 mb-2">
+                <button type="submit" class="btn btn-outline-success btn-lg btn-block"
+                        (click)="invoiceForm.valid ? generatePDF('download') : ''" i18n>Download Invoice</button>
+              </div>
+              <div class="col-md-4 mb-2">
+                <button type="submit" class="btn btn-outline-success btn-lg btn-block"
+                        (click)="invoiceForm.valid ? generatePDF('print') : ''" i18n>Print Invoice</button>
+              </div>
+              <div class="col-md-4 mb-2">
+                <button type="submit" class="btn btn-outline-success btn-lg btn-block"
+                        (click)="invoiceForm.valid ? generatePDF() : ''" i18n>Open Invoice</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</form>
