@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DocumentService} from "../../../services/document.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-document-upload',
@@ -10,49 +12,62 @@ export class DocumentUploadComponent {
   filteredData: { name: string; id: number }[] = [];
   documentForm!: FormGroup;
   fileInputs!: FormArray;
-  filePreview: string | ArrayBuffer = ''; // Initialize with an empty string
+  filePreview!: string | ArrayBuffer | null;
   showAutocomplete: boolean = false;
-  data: { name: string; id: number }[] = [
-    { name: 'data 1', id: 1 },
-    { name: 'data 2', id: 2 },
-  ];
-  uploadFields: any[] = []; // Used to store dynamically added file inputs
 
-  constructor(private fb: FormBuilder) {}
+  uploadFields: any[] = [];
+  private idCat!: number;
+
+  constructor(private fb: FormBuilder, private documentService: DocumentService, private router: Router) {}
 
   ngOnInit(): void {
-    // Initialize the FormArray
-    this.fileInputs = this.fb.array([]);
-
     this.documentForm = this.fb.group({
-      // Bind the FormArray to the 'fileInputs' form control
-      fileInputs: this.fileInputs,
+      file: [null, Validators.required],
       data: ['', Validators.required],
+      name: ['', Validators.required],
+      category: ['', Validators.required],
+      description: ['', Validators.required], // Add a textarea field for the description
     });
   }
 
-  onFileChange(event: any, index: number = 0): void {
-    const files = event.target.files;
-    if (files.length > 0) {
+  onFileChange(event: Event): void {
+    const element = event.currentTarget as HTMLInputElement;
+    let file: File | null = null;
+
+    if (element.files && element.files.length > 0) {
+      file = element.files[0];
+      this.documentForm.patchValue({
+        file: file
+      });
+
       const reader = new FileReader();
-      reader.onload = () => {
-        if (typeof reader.result === 'string') {
-          this.uploadFields[index].filePreview = reader.result;
-          this.uploadFields[index].file = files[0];
-        }
+      reader.onloadend = () => {
+        // Use a ternary operator to handle null | string
+        this.filePreview = reader.result ? reader.result : null;
       };
-      reader.readAsDataURL(files[0]);
+      reader.readAsDataURL(file);
     }
   }
+
+  onInputFocus(): void {
+    // Fetch initial data when the input is clicked
+    this.documentService.searchCategories()
+      .subscribe(data => {
+        this.filteredData = data;
+        this.showAutocomplete = true;
+      });
+  }
+
 
   onDataInput(): void {
     const inputValue = this.documentForm.get('data')?.value.toLowerCase();
     if (inputValue.length >= 1) {
-      // Filter the data based on the input value
-      this.filteredData = this.data.filter(item =>
-        item.name.toLowerCase().includes(inputValue)
-      );
-      this.showAutocomplete = true;
+      // Use the service to fetch data from the backend
+      this.documentService.searchCategories(inputValue)
+        .subscribe(data => {
+          this.filteredData = data;
+          this.showAutocomplete = true;
+        });
     } else {
       this.filteredData = [];
       this.showAutocomplete = false;
@@ -61,42 +76,24 @@ export class DocumentUploadComponent {
 
   selectData(dataItem: any): void {
     this.documentForm.get('data')?.setValue(dataItem.name);
-    this.showAutocomplete = false;
-  }
-
-  addUploadField(): void {
-    // Add a new upload field
-    this.uploadFields.push({ file: null, filePreview: '' });
-  }
-
-  removeUploadField(index: number): void {
-    // Remove the upload field at the specified index
-    this.uploadFields.splice(index, 1);
-  }
-
-  addFileInput(): void {
-    const newFileInput = this.fb.group({
-      file: [null],
-      filePreview: [''],
+    this.documentForm.patchValue({
+      category: dataItem.id
     });
-    // Push the new file input to the FormArray
-    this.fileInputs.push(newFileInput);
-    // Push the new file input's value to the uploadFields array
-    this.uploadFields.push(newFileInput.value);
-  }
-
-  // Function to remove a file input field by index
-  removeFileInput(index: number): void {
-    // Remove the file input from the FormArray
-    this.fileInputs.removeAt(index);
-    // Remove the corresponding entry from the uploadFields array
-    this.uploadFields.splice(index, 1);
+    this.showAutocomplete = false;
   }
 
   onSubmit(): void {
     if (this.documentForm.valid) {
-      // Handle form submission here
-      console.log(this.documentForm.value);
+      // Use the DocumentService to send the form data to the backend
+      console.log(this.documentForm.value)
+      this.documentService.uploadDocument(this.documentForm.value).subscribe(
+        response => {
+          this.router.navigate(['/document/list']);
+        },
+        error => {
+          console.error('Error uploading document:', error);
+        }
+      );
     } else {
       // Mark form controls as touched to display validation errors
       this.documentForm.markAllAsTouched();

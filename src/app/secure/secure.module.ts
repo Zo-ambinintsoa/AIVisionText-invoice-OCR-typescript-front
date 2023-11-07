@@ -27,6 +27,10 @@ import {GoogleMapsModule} from "@angular/google-maps";
 import {NgChartsModule} from "ng2-charts";
 import { ReceiptComponent } from './component/receipt/receipt.component';
 import {FormReceiptComponent} from "./component/receipt/form/form-receipt.component";
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { ContractComponent } from './component/contract/contract.component';
+import {ContactFormComponent} from "./component/contract/contact-form/contact-form.component";
+
 
 
 @NgModule({
@@ -49,6 +53,9 @@ import {FormReceiptComponent} from "./component/receipt/form/form-receipt.compon
     UserFormComponent,
     ReceiptComponent,
     FormReceiptComponent,
+    DashboardComponent,
+    ContractComponent,
+    ContactFormComponent,
 
   ],
   imports: [

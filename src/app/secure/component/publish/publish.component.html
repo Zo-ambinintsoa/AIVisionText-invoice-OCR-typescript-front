@@ -19,10 +19,10 @@
           </div>
         </div>
         <div class="col-md-4">
-          <div class="user card-add bg-light p-3 text-center" (click)="toggleLogementForm()">
-            <i class="fa fa-money fa-3x d-block mb-2"></i>
-            <p class="m-0" i18n>New receipt</p>
-          </div>
+              <a  class="user card-add bg-light p-3 text-center" [routerLink]="['/receipt/new']">
+                <i class="fa fa-money fa-3x d-block mb-2"></i>
+                <p class="m-0" i18n>New receipt</p>
+              </a>
         </div>
         <div class="col-md-4">
           <div class="user card-add bg-light p-3 text-center" (click)="toggleApartmentForm()">
@@ -37,5 +37,4 @@
 <hr>
 <!-- the forms with ngIf to conditionally display -->
 <app-document-upload *ngIf="showDocumentForm"></app-document-upload>
-<app-apartment-form *ngIf="showApartmentForm"></app-apartment-form>
 <app-logement-form *ngIf="showLogementForm"></app-logement-form>

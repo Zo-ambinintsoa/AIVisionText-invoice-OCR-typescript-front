@@ -18,6 +18,8 @@ import {ApartmentComponent} from "./secure/component/apartment/apartment.compone
 import {AuthGuard} from "./guard/auth.guard";
 import {ReceiptComponent} from "./secure/component/receipt/receipt.component";
 import {FormReceiptComponent} from "./secure/component/receipt/form/form-receipt.component";
+import {ContractComponent} from "./secure/component/contract/contract.component";
+import {ContactFormComponent} from "./secure/component/contract/contact-form/contact-form.component";
 
 const routes: Routes = [
   { path: '', component: SecureComponent,  canActivateChild: [AuthGuard],
@@ -34,7 +36,9 @@ const routes: Routes = [
       { path: 'analytics', component: AnalyticsComponent },
       { path: 'apartment/list', component: ApartmentComponent },
       { path: 'receipt/list', component: ReceiptComponent },
+      { path: 'contract/list', component: ContractComponent },
       { path: 'receipt/new', component: FormReceiptComponent },
+      { path: 'contract/new', component: ContactFormComponent },
     ] },
   { path: '',
         component: PublicComponent, children: [

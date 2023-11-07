@@ -1,0 +1,18 @@
+{
+  "lineChartData": [
+    {
+      "data": [1200, 1400, 1300, 1500, 1600, 1800, 1700],
+      "label": "Monthly Invoices ($)"
+    }
+  ],
+  "lineChartLabels": ["January", "February", "March", "April", "May", "June", "July"],
+  "barChartData": [
+    {
+      "data": [50, 75, 150, 100, 200, 175, 125],
+      "label": "Documents Processed"
+    }
+  ],
+  "barChartLabels": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+  "pieChartData": [250, 150, 100, 50],
+  "pieChartLabels": ["Invoices", "Contracts", "Reports", "Emails"]
+}

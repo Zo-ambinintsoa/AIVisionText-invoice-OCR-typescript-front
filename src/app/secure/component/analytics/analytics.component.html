@@ -1,6 +1,41 @@
+<h1 i18n>Analytics</h1>
+<br>
+<hr>
+<br>
 
-    <h1 i18n>Analytics</h1>
-    <br>
-    <hr>
-    <br>
+<div class="container">
+  <div class="row">
+    <!-- Line Chart Column -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Monthly Invoice Amounts</div>
+        <div class="card-body">
+          <canvas id="lineChart"></canvas>
+        </div>
+      </div>
+    </div>
 
+    <!-- Bar Chart Column -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Documents Processed</div>
+        <div class="card-body">
+          <canvas id="barChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <!-- Pie Chart takes full row width, centered -->
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header">Document Types Distribution</div>
+        <div class="card-body">
+          <canvas id="pieChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

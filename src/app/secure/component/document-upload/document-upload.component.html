@@ -4,24 +4,22 @@
     <form (ngSubmit)="onSubmit()" [formGroup]="documentForm" enctype="multipart/form-data">
       <div class="form-group">
         <!-- File Preview -->
-        <div class="image-preview">
-          <img [src]="filePreview" alt="Preview" class="img-thumbnail" *ngIf="filePreview" />
-        </div>
+
 
         <!-- Hidden file input for selecting files -->
-        <input type="file" class="form-control-file" (change)="onFileChange($event)" accept="image/*" />
+        <input type="file" class="form-control-file" (change)="onFileChange($event)" accept="image/*" formControlName="file" />
 
-        <!-- Add button to add more file inputs -->
+<!--        &lt;!&ndash; Add button to add more file inputs &ndash;&gt;
         <div class="form-group">
           <button type="button" class="btn btn-outline-light rounded-circle" (click)="addFileInput()">
             <span class="fa fa-plus"></span>
           </button>
         </div>
 
-        <!-- Display multiple file inputs here -->
+        &lt;!&ndash; Display multiple file inputs here &ndash;&gt;
         <div class="form-group">
           <div *ngFor="let fileInput of fileInputs.controls; let i = index" class="input-group justify-content-between">
-            <!-- Hidden file input for selecting files -->
+            &lt;!&ndash; Hidden file input for selecting files &ndash;&gt;
             <input
               type="file"
               class="form-control-file"
@@ -32,17 +30,24 @@
               required
             />
 
-            <!-- Remove button floated to the right -->
+            &lt;!&ndash; Remove button floated to the right &ndash;&gt;
             <div class="input-group-append float-right">
               <button class="btn btn-outline-danger rounded-circle ml-auto" type="button" (click)="removeFileInput(i)">
                 <span class="fa fa-trash"></span>
               </button>
             </div>
           </div>
-        </div>
+        </div>-->
 
       </div>
 
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter document name">
+        <div class="text-danger" *ngIf="documentForm.get('name')?.invalid && documentForm.get('name')?.touched">
+          Name is required.
+        </div>
+      </div>
       <!-- Autocomplete Input -->
       <div class="form-group">
         <label for="data" i18n="@@dataLabel">Type</label>
@@ -53,6 +58,7 @@
           placeholder="Search for Type"
           formControlName="data"
           (input)="onDataInput()"
+          (focus)="onInputFocus()"
         />
         <div class="autocomplete-list" *ngIf="showAutocomplete">
           <div class="autocomplete-item" *ngFor="let property of filteredData" (click)="selectData(property)">
@@ -64,8 +70,13 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" formControlName="description"></textarea>
+      </div>
+
       <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary" [disabled]="documentForm.invalid" i18n="@@loginButton">
+      <button type="submit" class="btn btn-primary" [disabled]="documentForm.invalid" i18n>
         <span class="fas fa-cloud-upload-alt"></span> Upload
       </button>
     </form>

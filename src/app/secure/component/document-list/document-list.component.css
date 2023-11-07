@@ -1,3 +1,6 @@
-
-
-
+.image-preview-small {
+  max-width: 100px;
+  max-height: inherit;
+  display: block; /* To center the image if the parent has text-align: center */
+  margin: 0 auto; /* Center the image horizontally if the parent has a set width */
+}

@@ -9,7 +9,6 @@ export class DocumentService {
   private baseUrl = 'http://localhost:3000/api';
   private httpOptions = {
     headers: new HttpHeaders({}),
-    withCredentials: true // Set this to true for cookie-based authentication
   };
 
   constructor(private http: HttpClient) { }
@@ -23,17 +22,24 @@ export class DocumentService {
     return this.http.get(`${this.baseUrl}/documents`, { params });
   }
 
+  searchCategories(name = ''): Observable<{ id: number; name: string }[]> {
+    return this.http.get<{ id: number; name: string }[]>(`${this.baseUrl}/document/category/search`, {
+      params: { name: name }
+    });
+  }
+
   findOneDocument(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/documents/${id}`, this.httpOptions);
   }
 
-  uploadDocument(name: string, description: string, file: File): Observable<any> {
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('description', description);
-    formData.append('file', file);
+  uploadDocument(formData: any): Observable<any> {
+    const uploadData = new FormData();
+    uploadData.append('name', formData.name);
+    uploadData.append('category', formData.category);
+    uploadData.append('description', formData.description);
+    uploadData.append('file', formData.file);
 
-    return this.http.post(`${this.baseUrl}/documents/upload`, formData, this.httpOptions);
+    return this.http.post('http://localhost:3000/api/documents/upload', uploadData);
   }
 
   deleteDocument(id: number): Observable<any> {

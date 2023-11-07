@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DocumentService} from "../../../services/document.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 
 @Component({
@@ -16,10 +17,11 @@ export class DocumentListComponent implements OnInit {
   currentPage: number = 1;
   perPage: number = 10;
   searchForm!: FormGroup;
+  imagePreviewUrl: SafeUrl | null = null;
 
   selectedDocumentId: number | null = null;
 
-  constructor(private documentService: DocumentService, private formBuilder: FormBuilder) {}
+  constructor(private documentService: DocumentService, private formBuilder: FormBuilder, private sanitizer: DomSanitizer,) {}
 
   ngOnInit() {
     this.searchForm = this.formBuilder.group({
@@ -61,7 +63,13 @@ export class DocumentListComponent implements OnInit {
         (documentDetails: any) => {
           this.selectedDocument = documentDetails;
           this.selectedBefore = documentId;
-          this.showDetails = true;
+          this.documentService.downloadFile(documentId).subscribe(blob => {
+            const objectURL = URL.createObjectURL(blob);
+            this.imagePreviewUrl = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+            this.showDetails = true;
+          }, error => {
+            console.error('Error fetching document image', error);
+          });
         },
         (error) => {
           console.error('Error fetching document details', error);
@@ -69,6 +77,8 @@ export class DocumentListComponent implements OnInit {
       );
     }
   }
+
+
 
   toggleButton(documentId: number) {
     if (this.selectedDocumentId === documentId) {

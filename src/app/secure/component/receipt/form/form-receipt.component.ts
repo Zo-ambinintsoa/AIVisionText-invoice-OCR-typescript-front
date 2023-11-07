@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Invoice} from "../../../../models/invoice";
 import {ReceiptService} from "../../../../services/receipt.service";
 import {Product} from "../../../../models/product";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-form',
@@ -11,8 +12,10 @@ import {Product} from "../../../../models/product";
 export class FormReceiptComponent {
   invoice = new Invoice();
 
-  constructor(private invoiceService: ReceiptService) {}
-
+  constructor(private invoiceService: ReceiptService, private router: Location) {}
+  goBack(): void {
+    this.router.back(); // Replace '/' with the appropriate route to navigate back to.
+  }
   generatePDF(action = 'open') {
     this.invoiceService.generatePDF(this.invoice, action);
   }

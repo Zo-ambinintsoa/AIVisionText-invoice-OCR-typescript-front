@@ -115,19 +115,36 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-4 mb-2">
-                <button type="submit" class="btn btn-outline-success btn-lg btn-block"
-                        (click)="invoiceForm.valid ? generatePDF('download') : ''" i18n>Download Invoice</button>
+                <div class="row">
+                  <div class="col-2 mb-2">
+                    <button type="button" class="btn btn-outline-danger btn-lg" (click)="goBack()">
+                      <i class="fa fa-times"></i>
+                    </button>
+                  </div>
+                  <div class="col mb-2">
+                    <button type="submit" class="btn btn-outline-success btn-lg btn-block"
+                            (click)="invoiceForm.valid ? generatePDF('download') : ''" i18n>
+                      <i class="fa fa-download"></i> Download Invoice
+                    </button>
+                  </div>
+                </div>
               </div>
               <div class="col-md-4 mb-2">
                 <button type="submit" class="btn btn-outline-success btn-lg btn-block"
-                        (click)="invoiceForm.valid ? generatePDF('print') : ''" i18n>Print Invoice</button>
+                        (click)="invoiceForm.valid ? generatePDF('print') : ''" i18n>
+                  <i class="fa fa-print"></i> Print Invoice
+                </button>
               </div>
               <div class="col-md-4 mb-2">
                 <button type="submit" class="btn btn-outline-success btn-lg btn-block"
-                        (click)="invoiceForm.valid ? generatePDF() : ''" i18n>Open Invoice</button>
+                        (click)="invoiceForm.valid ? generatePDF() : ''" i18n>
+                  <i class="fa fa-eye"></i> Open Invoice
+                </button>
               </div>
             </div>
+
           </div>
+
         </div>
 
 

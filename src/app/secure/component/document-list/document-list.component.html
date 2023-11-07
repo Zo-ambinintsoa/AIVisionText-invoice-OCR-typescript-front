@@ -1,4 +1,3 @@
-<script src="../../../../../../OCR-Test/index.js"></script>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -18,11 +17,11 @@
         <table class="table">
           <thead>
           <tr>
-            <th i18n="@@userId">User ID</th>
+            <th i18n="@@userId">ID</th>
+            <th i18n="@@documentUrl">Document Name</th>
             <th i18n="@@fileName">File Name</th>
             <th i18n="@@fileType">File Type</th>
             <th i18n="@@uploadDate">Upload Date</th>
-            <th i18n="@@documentUrl">Document URL</th>
             <th i18n="@@category">Category</th>
             <th *ngIf="!showDetails" i18n="@@actions">Actions</th>
           </tr>
@@ -35,11 +34,11 @@
           </tr>
           <tr *ngFor="let documentOn of documentList"
               (click)="onRowClick(documentOn.id); toggleButton(documentOn.id);" [class.selected-row]="documentOn === selectedDocument">
-            <td>{{ documentOn?.userId }}</td>
+            <td>{{ documentOn?.id }}</td>
+            <td>{{ documentOn?.name }}</td>
             <td>{{ documentOn?.fileName }}</td>
             <td>{{ documentOn?.fileType }}</td>
             <td>{{ documentOn?.uploadDate }}</td>
-            <td>{{ documentOn?.documentUrl }}</td>
             <td>{{ documentOn.category?.name }}</td>
             <td *ngIf="!showDetails">
               <a href="/document/edit/{{documentOn.id}}" class="btn btn-outline-info rounded-circle mx-lg-1">
@@ -81,10 +80,17 @@
           <div class="card-body">
             <h5 class="card-title" i18n="@@documentDetails">Document Details</h5>
             <ul class="list-group list-group-flush">
+              <img [src]="imagePreviewUrl" alt="Document Image Preview" class="card-img-top image-preview-small" *ngIf="imagePreviewUrl">
               <li class="list-group-item">
                 <div class="d-flex justify-content-between">
-                  <strong i18n="@@userId">User ID:</strong>
-                  <span>{{ selectedDocument?.userId }}</span>
+                  <strong i18n="@@userId">Document ID:</strong>
+                  <span>{{ selectedDocument?.id }}</span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <strong i18n="@@userId">Document Name:</strong>
+                  <span>{{ selectedDocument?.name }}</span>
                 </div>
               </li>
               <li class="list-group-item">
@@ -114,7 +120,7 @@
               <li class="list-group-item">
                 <div class="d-flex justify-content-between">
                   <strong i18n="@@category">Category:</strong>
-                  <span>{{ selectedDocument?.category }}</span>
+                  <span>{{ selectedDocument?.category.name }}</span>
                 </div>
               </li>
             </ul>

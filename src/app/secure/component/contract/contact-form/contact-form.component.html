@@ -1,0 +1,132 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item">Contracts</li>
+    <li class="breadcrumb-item active" aria-current="page">New Contract</li>
+  </ol>
+</nav>
+
+<form (ngSubmit)="onSubmit()" #contractForm="ngForm" novalidate>
+  <div class="container-fluid pt-2 mb-5">
+    <div class="row">
+      <div class="col">
+        <!-- Employer Name -->
+        <div class="card">
+          <div class="card-header">Contractor Details</div>
+          <div class="card-body">
+
+            <!-- Employer Name -->
+            <div class="mb-3">
+              <label for="employerName" class="form-label">Employer Name</label>
+              <input type="text" class="form-control" id="employerName" name="employerName"
+                     [ngClass]="{'is-invalid': contractForm.submitted && employerName.invalid}"
+                     [(ngModel)]="contractDetails.employerName" #employerName="ngModel" required>
+              <div class="invalid-feedback" *ngIf="employerName.invalid && employerName.touched">
+                Employer name is required.
+              </div>
+            </div>
+
+            <!-- Employee Name -->
+            <div class="mb-3">
+              <label for="employeeName" class="form-label">Employee Name</label>
+              <input type="text" class="form-control" id="employeeName" name="employeeName"
+                     [ngClass]="{'is-invalid': contractForm.submitted && employeeName.invalid}"
+                     [(ngModel)]="contractDetails.employeeName" #employeeName="ngModel" required>
+              <div class="invalid-feedback" *ngIf="employeeName.invalid && employeeName.touched">
+                Employee name is required.
+              </div>
+            </div>
+
+            <!-- National ID -->
+            <div class="mb-3">
+              <label for="nationalId" class="form-label">National ID Number</label>
+              <input type="text" class="form-control" id="nationalId" name="nationalId"
+                     [ngClass]="{'is-invalid': contractForm.submitted && nationalId.invalid}"
+                     [(ngModel)]="contractDetails.nationalId" #nationalId="ngModel" required>
+              <div class="invalid-feedback" *ngIf="nationalId.invalid && nationalId.touched">
+                National ID number is required.
+              </div>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="mb-3">
+              <label for="dateOfBirth" class="form-label">Date of Birth</label>
+              <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth"
+                     [ngClass]="{'is-invalid': contractForm.submitted && dateOfBirth.invalid}"
+                     [(ngModel)]="contractDetails.dateOfBirth" #dateOfBirth="ngModel" required>
+              <div class="invalid-feedback" *ngIf="dateOfBirth.invalid && dateOfBirth.touched">
+                Date of birth is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-2">
+          <div class="card-header">Contract Details</div>
+          <div class="card-body">
+            <!-- Job Title -->
+            <div class="mb-3">
+              <label for="jobTitle">Job Title</label>
+              <input type="text" class="form-control" id="jobTitle" name="jobTitle"
+                     [ngClass]="{'is-invalid': contractForm.submitted && jobTitle.invalid}"
+                     [(ngModel)]="contractDetails.jobTitle" #jobTitle="ngModel" required>
+              <div class="invalid-feedback" *ngIf="jobTitle.invalid && jobTitle.touched">
+                Job title is required.
+              </div>
+            </div>
+
+            <!-- Start Date -->
+            <div class="mb-3">
+              <label for="startDate">Start Date</label>
+              <input type="date" class="form-control" id="startDate" name="startDate"
+                     [ngClass]="{'is-invalid': contractForm.submitted && startDate.invalid}"
+                     [(ngModel)]="contractDetails.startDate" #startDate="ngModel" required>
+              <div class="invalid-feedback" *ngIf="startDate.invalid && startDate.touched">
+                Start date is required.
+              </div>
+            </div>
+
+            <!-- Salary -->
+            <div class="mb-3">
+              <label for="salary">Salary</label>
+              <input type="text" class="form-control" id="salary" name="salary"
+                     [ngClass]="{'is-invalid': contractForm.submitted && salary.invalid}"
+                     [(ngModel)]="contractDetails.salary" #salary="ngModel" required>
+              <div class="invalid-feedback" *ngIf="salary.invalid && salary.touched">
+                Salary is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-2">
+          <div class="card-body">
+            <div class="container mt-4">
+              <div class="row mb-2">
+                <div class="col text-center">
+                  <button type="button" class="btn btn-danger btn-lg">
+                    <i class="fa fa-times-circle"></i> Cancel
+                  </button>
+                </div>
+                <div class="col text-center">
+                  <button type="submit" class="btn btn-outline-primary btn-lg" (click)="generatePdf()" [disabled]="contractForm.invalid">
+                    <i class="fa fa-file"></i> Generate Contract
+                  </button>
+                </div>
+                <div class="col text-center">
+                  <button type="submit" class="btn btn-outline-secondary btn-lg" (click)="printPdf()" [disabled]="contractForm.invalid">
+                    <i class="fa fa-print"></i> Print Contract
+                  </button>
+                </div>
+                <div class="col text-center">
+                  <button type="submit" class="btn btn-outline-success btn-lg" (click)="downloadPdf()" [disabled]="contractForm.invalid">
+                    <i class="fa fa-download"></i> Download Contract
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
