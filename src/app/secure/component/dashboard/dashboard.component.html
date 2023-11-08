@@ -1,1 +1,51 @@
-<p>dashboard works!</p>
+<!-- dashboard.component.html -->
+
+<div class="container mt-4">
+  <!-- Dashboard Stats -->
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">Contracts</div>
+        <div class="card-body">
+          <h5 class="card-title">{{ dashboardStats.numberOfContracts }}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">Invoices</div>
+        <div class="card-body">
+          <h5 class="card-title">{{ dashboardStats.numberOfInvoices }}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">Documents</div>
+        <div class="card-body">
+          <h5 class="card-title">{{ dashboardStats.numberOfDocuments }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card">
+        <div class="card-header">Statistics by Category</div>
+        <div class="card-body">
+          <canvas #pieChartCanvas></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card">
+        <div class="card-header">Monthly Invoice Amounts</div>
+        <div class="card-body">
+          <canvas #lineChartCanvas></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

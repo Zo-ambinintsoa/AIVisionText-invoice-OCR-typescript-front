@@ -17,10 +17,31 @@ export class FormReceiptComponent {
     this.router.back(); // Replace '/' with the appropriate route to navigate back to.
   }
   generatePDF(action = 'open') {
+    this.invoice.InvNo = (Math.random() * 1000).toFixed(0);
+    const confirmation = window.confirm('Do you want to save the Invoice information?');
+    if (confirmation) {
+    this.createNewInvoice(this.invoice);
     this.invoiceService.generatePDF(this.invoice, action);
+    } else {
+      this.invoiceService.generatePDF(this.invoice, action);
+    }
+  }
+
+  createNewInvoice(invoiceData: Invoice) {
+      this.invoiceService.createInvoice(invoiceData).subscribe({
+        next: (invoice) => console.log('Invoice created', invoice),
+        error: (error) => console.error('There was an error creating the invoice', error)
+      });
   }
 
   addProduct() {
     this.invoice.products.push(new Product());
   }
+
+  removeProduct(i: number) {
+    if (i >= 0 && i < this.invoice.products.length) {
+      this.invoice.products.splice(i, 1);
+    }
+  }
+
 }

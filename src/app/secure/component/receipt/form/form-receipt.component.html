@@ -55,7 +55,7 @@
         <div class="card mt-2">
           <div class="card-header d-flex justify-content-between">
             Order Details
-            <button type="button" class="btn btn-secondary" (click)="addProduct()">+</button>
+            <button type="button" class="btn btn-outline-success rounded-circle" (click)="addProduct()"><i class="fa fa-plus"></i></button>
           </div>
           <div class="card-body">
             <table class="table">
@@ -95,6 +95,9 @@
                 </td>
                 <td>
                   {{product.price * product.qty || ''}}
+                </td>
+                <td>
+                  <button type="button" class="btn btn-outline-danger rounded-circle" (click)="removeProduct(i)"><i class="fa fa-trash"></i></button>
                 </td>
               </tr>
               </tbody>
@@ -142,12 +145,8 @@
                 </button>
               </div>
             </div>
-
           </div>
-
         </div>
-
-
       </div>
     </div>
   </div>

@@ -20,12 +20,14 @@ import {ReceiptComponent} from "./secure/component/receipt/receipt.component";
 import {FormReceiptComponent} from "./secure/component/receipt/form/form-receipt.component";
 import {ContractComponent} from "./secure/component/contract/contract.component";
 import {ContactFormComponent} from "./secure/component/contract/contact-form/contact-form.component";
+import {DashboardComponent} from "./secure/component/dashboard/dashboard.component";
 
 const routes: Routes = [
   { path: '', component: SecureComponent,  canActivateChild: [AuthGuard],
     children : [
       { path: '', component: LogementListComponent },
       { path: 'document/list', component: DocumentListComponent },
+      { path: 'dashboard', component: DashboardComponent },
       { path: 'document/upload', component: DocumentUploadComponent },
       { path: 'history', component: HistoryComponent },
       { path: 'user/list', component: UserListComponent },

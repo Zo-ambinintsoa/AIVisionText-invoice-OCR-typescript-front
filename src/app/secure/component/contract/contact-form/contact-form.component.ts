@@ -57,8 +57,8 @@ export class ContactFormComponent {
   saveInfo() {
     this.pdfService.createContract(this.contractDetails).subscribe({
       next: (response) => {
-        alert('Contract saved successfully.');
         this.router.navigate(['/document/list']);
+        alert('Contract saved successfully.');
       },
       error: (error) => {
         // Handle errors here, e.g., alert the user

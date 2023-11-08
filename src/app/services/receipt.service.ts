@@ -36,6 +36,10 @@ export class ReceiptService {
     return throwError(() => new Error('Could not complete your request; please try again later.'));
   }
 
+  createInvoice(invoiceData: Invoice): Observable<Invoice> {
+    return this.http.post<Invoice>(this.apiUrl, invoiceData);
+  }
+
   generatePDF(invoice: Invoice, action = 'open') {
     let docDefinition = {
       content: [
