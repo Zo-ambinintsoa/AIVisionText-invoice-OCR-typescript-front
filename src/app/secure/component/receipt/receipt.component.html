@@ -1,0 +1,64 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item">Invoice</li>
+    <li class="breadcrumb-item active" aria-current="page">List</li>
+  </ol>
+</nav>
+<div class="card">
+  <div class="card-body">
+    <div class="">
+      <div class="row mb-3 form-inline float-right">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Search invoices..." [(ngModel)]="search">
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-outline-success" (click)="onSearch()">Search</button>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Invoice Number</th>
+          <th>Customer Name</th>
+          <th>Date Issued</th>
+          <th>Number of product</th>
+          <th>Total Amount</th>
+<!--          <th>Status</th>-->
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let invoice of invoices">
+          <td>{{ invoice.InvNo }}</td>
+          <td>{{ invoice.customerName }}</td>
+          <td>{{ invoice.createdAt | date }}</td>
+          <td>{{ invoice.productCount}}</td>
+          <td>{{ invoice.total | currency }}</td>
+<!--          <td>{{ invoice.status }}</td>-->
+          <td>
+            <button class="btn btn-primary btn-sm rounded-circle mx-1" (click)="viewDetails(invoice.id)">
+              <i class="fa fa-eye"></i>
+            </button>
+            <button class="btn btn-danger btn-sm rounded-circle" (click)="onDelete(invoice.id)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <!-- Pagination -->
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li class="page-item" [class.disabled]="page <= 1">
+            <a class="page-link" href="#" (click)="changePage(-1)">Previous</a>
+          </li>
+          <!-- Generate page numbers here -->
+          <li class="page-item" [class.disabled]="page >= total / limit">
+            <a class="page-link" href="#" (click)="changePage(1)">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

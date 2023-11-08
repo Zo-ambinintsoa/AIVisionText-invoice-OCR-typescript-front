@@ -9,6 +9,8 @@ export class Invoice {
   products: Product[] = [];
   additionalDetails!: string;
 
+  InvNo?: string;
+
   constructor() {
     this.products.push(new Product());
   }

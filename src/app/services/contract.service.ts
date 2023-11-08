@@ -51,32 +51,155 @@ export class ContractService {
     return this.http.get(`${this.contractsUrl}/${id}`);
   }
 
-  private getDocumentDefinition(data: any) {
+  private getDocumentDefinition(contractData: any) {
     return {
       content: [
-        { text: 'Work Contract', style: 'header' },
-        `This contract is made between ${data.employerName} (Employer) and ${data.employeeName} (Employee).`,
-        `Employee National ID: ${data.nationalId}`,
-        `Date of Birth: ${data.dateOfBirth}`,
-        `Job Title: ${data.jobTitle}`,
-        `Start Date: ${data.startDate}`,
-        `Salary: ${data.salary}`,
-        '\n\nTerms and Conditions:',
-        '1. The Employee agrees to perform the duties described by the Employer under the title specified above and will perform duties as required by the Employer.',
-        '2. The Employer agrees to compensate the Employee for services rendered at the rate specified above, payable monthly.',
-        '3. The Employee will observe and comply with company policies and procedures.',
-        '4. The Employee is entitled to standard company benefits, including health insurance, as specified in the company handbook.',
-        '5. This contract is governed by the laws of the jurisdiction where the Employer operates.',
-        '\n\nEmployee Signature: ____________________    Date: _______________',
-        '\n\nEmployer Signature: ____________________    Date: _______________'
+        {
+          columns: [
+            [
+              {
+                text: 'PRINCEPT I-WEB',
+                style: 'header'
+              },
+              {
+                text: 'Contrat de Travail (CDI)',
+                style: 'subheader',
+                margin: [0, 5, 0, 0]
+              }
+            ],
+            [
+              {
+                text: 'Contrat de Travail',
+                style: 'documentTitle',
+                alignment: 'right'
+              }
+            ]
+          ],
+          columnGap: 10,
+        },
+        {
+          text: 'Introduction',
+          style: 'sectionHeader'
+        },
+        {
+          text: [
+            'Ce document constitue un contrat de travail entre ',
+            { text: 'PRINCEPT I-WEB', bold: true }, // Employer's Company Name
+            ', ci-après désigné l\'"Employeur", et ',
+            { text: `${contractData.employeeName}`, bold: true }, // Employee's Name
+            ', ci-après désigné l\'"Employé". Par ce contrat, l\'Employeur engage l\'Employé en tant que ',
+            { text: `${contractData.jobTitle}`, bold: true }, // Employee's Job Title
+            ' et l\'Employé accepte cette offre d\'emploi et s\'engage à exécuter ses fonctions conformément aux termes et conditions énoncés ci-après. Ce contrat reflète l\'intégralité des accords entre les deux parties et annule et remplace tous les accords précédents, qu\'ils soient écrits ou oraux, relatifs à l\'objet de ce contrat.'
+          ],
+          margin: [0, 0, 0, 10] // Optional: Adjust margin as needed
+        },
+        {
+          style: 'subheader',
+          text: 'Détails de l\'Employeur'
+        },
+        {
+          text: [
+            'Nom: RAZANDRINY Dieu Donné Francis\n',
+            'Entreprise: PRINCEPT I-WEB\n',
+            'Forme juridique: Entreprise individuelle (EI)\n',
+            'Numéro d\'Identification Fiscale (NIF): 3005836049\n',
+            'Numéro de STAT: 62011 11 2021 09472\n',
+            'Siège social: Mahazoarivo, Lot VR 26 MAA Mahazoarivo, Antananarivo 101, Madagascar\n',
+            'Téléphone: +261341908517\n',
+          ]
+        },
+        {
+          style: 'subheader',
+          text: 'Détails de l\'Employé'
+        },
+        {
+          text: [
+            `Nom: ${contractData.employeeName}\n`,
+            `Numéro d'Identification Nationale: ${contractData.nationalId}\n`,
+            `Date de Naissance: ${contractData.dateOfBirth}\n`,
+            `Titre de Poste: ${contractData.jobTitle}\n`,
+            `Date de Début: ${contractData.startDate}\n`,
+            `Salaire: ${contractData.salary}\n`,
+          ]
+        },
+
+        {
+          style: 'sectionHeader',
+          text: 'Termes et Conditions'
+        },
+        {
+          ul: [
+            'Relation de travail: L\'Employé s\'engage à exécuter les fonctions décrites par l\'Employeur sous le titre spécifié ci-dessus et à effectuer les tâches requises par l\'Employeur. L\'employeur fournira le soutien et les ressources nécessaires à l\'accomplissement de ces fonctions.',
+            'Rémunération: L\'Employeur s\'engage à rémunérer l\'Employé pour les services rendus au taux spécifié ci-dessus, payable mensuellement. Ceci inclut la provision pour les augmentations annuelles, sous réserve des évaluations de performance.',
+            'Politiques de la société: L\'Employé observera et se conformera aux politiques et procédures de l\'entreprise. Cela inclut l\'adhésion à tous les règlements internes, en particulier en ce qui concerne la confidentialité et la protection des données.',
+            'Avantages sociaux de l\'employé: L\'Employé a droit aux avantages sociaux standard de l\'entreprise, y compris l\'assurance maladie, comme spécifié dans le manuel de l\'entreprise. Les avantages supplémentaires tels que les plans de retraite et les primes seront discutés au cas par cas.',
+            'Droit applicable: Ce contrat est régi par les lois de la juridiction où l\'Employeur opère. Tous les litiges découlant de ce contrat seront résolus par arbitrage ou devant les tribunaux locaux, selon ce qui est approprié.',
+            // ... Autres termes et conditions selon le besoin ...
+          ],
+          style: 'terms'
+        },
+        {
+          style: 'subheader',
+          text: 'Durée et Période d\'Essai'
+        },
+        {
+          ul: [
+        'Ce contrat est un contrat à durée indéterminée (CDI) commençant à la date de début spécifiée ci-dessus. Une période d\'essai de 90 jours à compter de la date de début s\'appliquera, pendant laquelle l\'une ou l\'autre des parties peut résilier le contrat avec un préavis plus court.', ]},
+        {
+          style: 'subheader',
+          text: 'Clause de Confidentialité'
+        },
+            {
+              ul: [
+        'L\'Employé s\'engage à préserver la confidentialité de toutes les informations propriétaires, secrets commerciaux et données appartenant à l\'Employeur. Cette obligation de confidentialité survivra à la résiliation de ce contrat et restera en vigueur indéfiniment. L\'employé ne divulguera, ne copiera, ne distribuera ni n’utilisera ces informations, sauf autorisation expresse de l\'Employeur ou dans le cadre de ses fonctions pour l\'Employeur.',]},
+        {
+          style: 'subheader',
+          text: 'Horaires et Environnement de Travail'
+        },
+        {
+          ul: [
+        'L\'employé est censé travailler à temps plein selon un horaire déterminé par l\'Employeur. La semaine de travail standard est de 40 heures, typiquement du lundi au vendredi, avec la possibilité de faire des heures supplémentaires occasionnelles selon les besoins de l\'Employeur. L\'Employé effectuera ses tâches sur les lieux de travail de l\'Employeur, sauf accord contraire pour le télétravail ou les missions sur le terrain. L\'Employeur s\'engage à fournir un environnement de travail sûr et sain, conforme aux normes de l\'industrie et aux lois applicables.',]},
+
+        {
+          style: 'subheader',
+          text: 'Clause de Modification'
+        },
+        'Toute modification de ce contrat ne sera valable qu\'après accord écrit des deux parties. Les modifications ou avenants à ce contrat doivent être rédigés par écrit et signés par les représentants autorisés des deux parties.',
+        {
+          columns: [
+            [
+              { text: 'Signature de l\'Employé', alignment: 'left', italics: true, margin: [0, 20, 0, 0] }
+            ],
+            [
+              { text: 'Signature de l\'Employeur', alignment: 'right', italics: true, margin: [0, 20, 0, 0] }
+            ]
+          ],
+        },
       ],
       styles: {
         header: {
-          fontSize: 18,
+          fontSize: 16,
+          bold: true
+        },
+        documentTitle: {
+          fontSize: 14,
           bold: true,
-          alignment: 'center',
-          margin: [0, 0, 0, 20]
-        }
+          decoration: 'underline'
+        },
+        subheader: {
+          fontSize: 12,
+          bold: true,
+          margin: [0, 10, 0, 5]
+        },
+        sectionHeader: {
+          bold: true,
+          fontSize: 12,
+          margin: [0, 15, 0, 15],
+          decoration: 'underline'
+        },
+        terms: {
+          margin: [0, 5, 0, 15]
+        },
       }
     };
   }

@@ -25,6 +25,20 @@ export class SidebarComponent implements OnInit {
       title: 'PRM - Documents Lists',
     },
     {
+      route: '/contract/list',
+      label: 'Contract',
+      icon: 'inventory',
+      i18nKey: 'contract',
+      title: 'PRM - Contract Lists',
+    },
+    {
+      route: '/receipt/list',
+      label: 'Receipt',
+      icon: 'inventory',
+      i18nKey: 'contract',
+      title: 'PRM - Invoice Lists',
+    },
+    {
       route: '/user/list',
       label: 'User List',
       icon: 'person_outline',
@@ -126,6 +140,14 @@ export class SidebarComponent implements OnInit {
       case '/document/list':
         this.activePage = 'document';
         this.titleService.setTitle('PRM - Documents Lists');
+        break;
+      case '/contract/list':
+        this.activePage = 'contract';
+        this.titleService.setTitle('PRM - Contract Lists');
+        break;
+      case '/receipt/list':
+        this.activePage = 'Receipt';
+        this.titleService.setTitle('PRM - Invoice Lists');
         break;
       case '/publish':
         this.activePage = 'publish';
