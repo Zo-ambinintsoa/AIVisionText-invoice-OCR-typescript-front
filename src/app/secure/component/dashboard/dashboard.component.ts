@@ -12,11 +12,11 @@ import {DocumentService} from "../../../services/document.service";
 export class DashboardComponent implements OnInit {
   @ViewChild('pieChartCanvas') pieChartCanvas!: ElementRef;
   @ViewChild('lineChartCanvas') lineChartCanvas!: ElementRef;
-
+  isLoading = false;
   dashboardStats = {
-    numberOfContracts: 0,
-    numberOfInvoices: 0,
-    numberOfDocuments: 0,
+    numberOfContracts: 3,
+    numberOfInvoices: 2,
+    numberOfDocuments: 4,
     pieChartData: [3, 2, 4],
     lineChartData: [1200, 1400, 1300, 1500, 1600, 1800, 1700],
     lineChartLabels: ['January', 'February', 'March', 'April', 'May', 'June', 'July']
@@ -26,8 +26,17 @@ export class DashboardComponent implements OnInit {
     Chart.register(...registerables);
   }
 
+  showSpinner() {
+    this.isLoading = true;
+    // Perform the action that requires loading
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000);
+  }
+
   ngOnInit() {
     this.loadDashboardCounts();
+
   }
 
   ngAfterViewInit() {
@@ -42,7 +51,7 @@ export class DashboardComponent implements OnInit {
         this.dashboardStats.numberOfInvoices = data.invoices;
         this.dashboardStats.numberOfDocuments = data.documents;
         this.dashboardStats.pieChartData = [data.contracts, data.invoices, data.documents];
-
+        this.showSpinner()
       },
       (error) => {
         console.error('There was an error retrieving the dashboard counts', error);

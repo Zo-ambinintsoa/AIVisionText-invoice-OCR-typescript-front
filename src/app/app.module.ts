@@ -13,28 +13,32 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {CredentialInterceptor} from "./interceptor/credential.interceptor";
 import {AuthGuard} from "./guard/auth.guard";
 
+
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SecureModule,
-    PublicModule,
-    SweetAlert2Module.forRoot(),
-    NgChartsModule,
-    NgbModule,
-    FooterModule,
-  ],
-  providers: [
-    {
-    provide : HTTP_INTERCEPTORS,
-      useClass: CredentialInterceptor,
-      multi: true,
-    },
-    AuthGuard,
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        SecureModule,
+        PublicModule,
+        SweetAlert2Module.forRoot(),
+        NgChartsModule,
+        NgbModule,
+        FooterModule,
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: CredentialInterceptor,
+            multi: true,
+        },
+        AuthGuard,
+    ],
+    exports: [
+
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

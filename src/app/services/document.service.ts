@@ -33,7 +33,7 @@ export class DocumentService {
   }
 
   getDashboardCounts(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/documents/dashboard`, this.httpOptions);
+    return this.http.get(`${this.baseUrl}/documents/d`, this.httpOptions);
   }
   uploadDocument(formData: any): Observable<any> {
     const uploadData = new FormData();

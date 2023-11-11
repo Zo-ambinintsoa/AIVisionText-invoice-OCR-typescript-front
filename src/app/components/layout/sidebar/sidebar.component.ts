@@ -87,13 +87,13 @@ export class SidebarComponent implements OnInit {
       i18nKey: 'settings',
       title: 'PRM - Settings',
     },
-    {
+/*    {
       route: '/new-login',
       label: 'New Login',
       icon: 'add',
       i18nKey: 'newLogin',
       title: 'PRM - New Login',
-    },
+    },*/
     {
       route: '/logout',
       label: 'Logout',

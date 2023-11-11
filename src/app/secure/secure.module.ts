@@ -30,6 +30,8 @@ import {FormReceiptComponent} from "./component/receipt/form/form-receipt.compon
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ContractComponent } from './component/contract/contract.component';
 import {ContactFormComponent} from "./component/contract/contact-form/contact-form.component";
+import {AppModule} from "../app.module";
+import {SpinnerComponent} from "./component/spinner/spinner.component";
 
 
 
@@ -56,21 +58,21 @@ import {ContactFormComponent} from "./component/contract/contact-form/contact-fo
     DashboardComponent,
     ContractComponent,
     ContactFormComponent,
-
+    SpinnerComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgOptimizedImage,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserModule,
-    HttpClientModule,
-    NgxEditorModule,
-    SweetAlert2Module,
-    FooterModule,
-    GoogleMapsModule,
-    NgChartsModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        NgOptimizedImage,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserModule,
+        HttpClientModule,
+        NgxEditorModule,
+        SweetAlert2Module,
+        FooterModule,
+        GoogleMapsModule,
+        NgChartsModule,
+    ]
 })
 export class SecureModule { }

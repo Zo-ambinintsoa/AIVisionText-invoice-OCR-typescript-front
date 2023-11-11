@@ -34,7 +34,7 @@ export class LoginComponent {
         formData.password
       ).subscribe(
         () => {
-          this.router.navigate(['/document/list'])
+          this.router.navigate(['/dashboard'])
         },
         (error) => {
           console.log(error)
